@@ -1,0 +1,26 @@
+html, body, .sb-show-main #root {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  font-family: Helvetica Neue, Arial, sans-serif;
+  color: #000;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Storybook */
+
+.sb-show-main {
+  height: 100vh;
+}
+
+.sb-show-main #root {
+  height: 100%;
+}
