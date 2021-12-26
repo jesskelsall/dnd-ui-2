@@ -47,7 +47,7 @@ const ControlMapPage: NextPage = () => {
         onClick={() =>
           updateMap({
             imageUrl,
-            size: 79.3,
+            scale: 79.3,
             positionHorizontal: 50,
             positionVertical: 50,
           })
@@ -59,7 +59,7 @@ const ControlMapPage: NextPage = () => {
         onClick={() =>
           updateMap({
             imageUrl,
-            size: 250,
+            scale: 250,
             positionHorizontal: 61.9,
             positionVertical: 67,
           })
@@ -71,7 +71,7 @@ const ControlMapPage: NextPage = () => {
         onClick={() =>
           updateMap({
             imageUrl,
-            size: 250,
+            scale: 250,
             positionHorizontal: 80.4,
             positionVertical: 51.9,
           })
@@ -111,7 +111,7 @@ const ControlMapPage: NextPage = () => {
         onClick={() =>
           updateMap({
             imageUrl: url,
-            size: scale,
+            scale: scale,
             positionHorizontal: horizontal,
             positionVertical: vertical,
           })

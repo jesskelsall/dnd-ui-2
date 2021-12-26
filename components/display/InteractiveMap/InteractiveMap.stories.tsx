@@ -9,7 +9,7 @@ export default {
       control: "text",
       description: "URL to the map image to be displayed.",
     },
-    size: {
+    scale: {
       control: "number",
       description: "Scale percentage to render the map at.",
     },
@@ -32,7 +32,7 @@ export const KingdomOfAstor = Template.bind({});
 KingdomOfAstor.storyName = "Kingdom of Astor";
 KingdomOfAstor.args = {
   imageUrl: "http://localhost:3000/map-astor.jpg",
-  size: 100,
+  scale: 100,
   positionHorizontal: 50,
   positionVertical: 50,
 };
@@ -41,7 +41,7 @@ export const NilsavnicAlliance = Template.bind({});
 NilsavnicAlliance.storyName = "Nil'Savnic Alliance";
 NilsavnicAlliance.args = {
   imageUrl: "http://localhost:3000/map-nilsavnic.jpg",
-  size: 100,
+  scale: 100,
   positionHorizontal: 50,
   positionVertical: 50,
 };

@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 
 export interface IStyledInteractiveMapProps {
   imageUrl: string;
-  size: number;
+  scale: number;
   positionHorizontal: number;
   positionVertical: number;
 }
@@ -14,7 +14,7 @@ export const StyledInteractiveMap = styled.div(
     background-color: #000;
     background-image: url("${props.imageUrl}");
     background-repeat: no-repeat;
-    background-size: ${props.size}%;
+    background-size: ${props.scale}%;
     background-position: ${props.positionHorizontal}% ${props.positionVertical}%;
     transition: background-size 3s ease, background-position 1.5s ease-out;
   `
@@ -24,13 +24,13 @@ export interface IInteractiveMapProps extends IStyledInteractiveMapProps {}
 
 export const InteractiveMap = ({
   imageUrl,
-  size,
+  scale,
   positionHorizontal,
   positionVertical,
 }: IInteractiveMapProps) => (
   <StyledInteractiveMap
     imageUrl={imageUrl}
-    size={size}
+    scale={scale}
     positionHorizontal={positionHorizontal}
     positionVertical={positionVertical}
   />

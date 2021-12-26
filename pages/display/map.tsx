@@ -42,7 +42,7 @@ const DisplayMapPage: NextPage = () => {
       {mapView && (
         <InteractiveMap
           imageUrl={mapView.imageUrl}
-          size={mapView.size}
+          scale={mapView.scale}
           positionHorizontal={mapView.positionHorizontal}
           positionVertical={mapView.positionVertical}
         />
