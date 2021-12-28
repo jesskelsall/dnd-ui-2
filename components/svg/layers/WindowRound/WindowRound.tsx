@@ -64,7 +64,6 @@ export const WindowRound = ({
 
   return (
     <StyledWindowRound size={totalSize}>
-      {/* <Ring overflow={overflowRadius} size={circleRadius * 2} /> */}
       <Window
         clipPathId={id}
         height={totalSize}

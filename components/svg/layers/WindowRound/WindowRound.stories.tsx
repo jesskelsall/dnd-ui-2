@@ -2,7 +2,7 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { WindowRound } from "./WindowRound";
 
 export default {
-  title: "Display/WindowRound",
+  title: "SVG/Layers/WindowRound",
   component: WindowRound,
   argTypes: {
     imageUrl: {
@@ -63,18 +63,6 @@ const defaultArgs = {
   showOverflow: false,
 };
 
-export const Builder = Template.bind({});
-Builder.args = {
-  imageUrl: "",
-  scale: 100,
-  positionHorizontal: 50,
-  positionVertical: 0,
-  circleRadius: defaultArgs.circleRadius,
-  overflowRadius: defaultArgs.overflowRadius,
-  overflowVertical: 1,
-  showOverflow: true,
-};
-
 export const Ephaine = Template.bind({});
 Ephaine.storyName = "Ephaine Seren";
 Ephaine.args = {
@@ -124,4 +112,16 @@ Vetrall.args = {
   overflowRadius: defaultArgs.overflowRadius,
   overflowVertical: 0.54,
   showOverflow: defaultArgs.showOverflow,
+};
+
+export const Builder = Template.bind({});
+Builder.args = {
+  imageUrl: "",
+  scale: 100,
+  positionHorizontal: 50,
+  positionVertical: 0,
+  circleRadius: defaultArgs.circleRadius,
+  overflowRadius: defaultArgs.overflowRadius,
+  overflowVertical: 1,
+  showOverflow: true,
 };
