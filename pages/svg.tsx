@@ -1,6 +1,15 @@
 import { NextPage } from "next";
-import { BoxShadowFilter } from "../components/svg/effects";
-import { circlePath, stampPath, pillPath } from "../components/svg/paths";
+import styled from "styled-components";
+import {
+  FilterBoxShadow,
+  PathCircle,
+  PathPill,
+  PathStamp,
+} from "../components/graphics";
+
+const FancyFont = styled.h1`
+  font-family: Metamorphous, Times New Roman, serif;
+`;
 
 const SVGPage: NextPage = () => {
   return (
@@ -12,8 +21,9 @@ const SVGPage: NextPage = () => {
         height: "100vh",
       }}
     >
+      <FancyFont>Vētrall Astérr</FancyFont>
       <svg width={800} height={800} style={{ backgroundColor: "#EEE" }}>
-        <BoxShadowFilter
+        <FilterBoxShadow
           id="shadow"
           boxShadows={[
             {
@@ -29,9 +39,9 @@ const SVGPage: NextPage = () => {
           ]}
         />
         <path
-          // d={circlePath({ r: 60, cx: 100, cy: 100 })}
-          // d={stampPath({ width: 200, height: 100, x: 20, y: 30, r: 15 })}
-          d={pillPath({ width: 200, height: 60, x: 0, y: 0 })}
+          // d={PathCircle({ r: 60, cx: 100, cy: 100 })}
+          // d={PathStamp({ width: 200, height: 100, x: 20, y: 30, r: 15 })}
+          d={PathPill({ width: 200, height: 60, x: 0, y: 0 })}
           fill="none"
           stroke="rgb(153, 109, 51)"
           strokeWidth={8}

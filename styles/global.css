@@ -15,6 +15,13 @@ a {
   text-decoration: none;
 }
 
+/* Fonts */
+
+@font-face {
+  font-family: 'Metamorphous';
+  src: url('../public/metamorphous.woff2') format('woff2');
+}
+
 /* Storybook */
 
 .sb-show-main {
