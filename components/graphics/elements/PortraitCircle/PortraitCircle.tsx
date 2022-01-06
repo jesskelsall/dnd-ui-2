@@ -2,9 +2,9 @@ import { nanoid } from "nanoid";
 import styled from "styled-components";
 import {
   BackgroundTexture,
+  BorderShaded,
   PortraitHole,
-  ShadedBorder,
-  StyledShadedBorder,
+  StyledBorderShaded,
   TBackgroundAnimation,
 } from "../../layers";
 import { FilterBoxShadow, PathCircle } from "../../svg";
@@ -36,7 +36,7 @@ export const StyledPortraitCircle = styled.div<IStyledPortraitCircleProps>`
     clip-path: url(#${(props) => props.clipPathId});
   }
 
-  ${StyledShadedBorder} {
+  ${StyledBorderShaded} {
     position: absolute;
     top: ${(props) => props.outerPosition}px;
     left: ${(props) => props.outerPosition}px;
@@ -69,7 +69,7 @@ export const PortraitCircle = ({
   borderColorMid,
   borderColorLight,
   borderColorDark,
-  borderDiameter, // The diameter of the circle ShadedBorder is centered on
+  borderDiameter, // The diameter of the circle BorderShaded is centered on
   borderThickness = 8,
   imageOverflowRadius,
   imageOverflowVertical,
@@ -131,7 +131,7 @@ export const PortraitCircle = ({
       </BackgroundShadow>
 
       {/* Border circle */}
-      <ShadedBorder
+      <BorderShaded
         colorDark={borderColorDark}
         colorLight={borderColorLight}
         colorMid={borderColorMid}

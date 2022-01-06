@@ -2,7 +2,11 @@ import { nanoid } from "nanoid";
 import styled from "styled-components";
 import { FilterBoxShadow, IBoxShadow } from "../../svg";
 
-export interface IShadedBorderProps {
+export const BASE_THICKNESS = 8;
+
+export const StyledBorderShaded = styled.svg``;
+
+export interface IBorderShadedProps {
   path: string;
   thickness?: number;
   width: number;
@@ -12,14 +16,7 @@ export interface IShadedBorderProps {
   colorDark: string;
 }
 
-const BASE_THICKNESS = 8;
-
-const thicknessRatio = (thickness: number) => (baseNumber: number) =>
-  baseNumber * (thickness / BASE_THICKNESS);
-
-export const StyledShadedBorder = styled.svg``;
-
-export const ShadedBorder = ({
+export const BorderShaded = ({
   colorDark,
   colorLight,
   colorMid,
@@ -27,9 +24,11 @@ export const ShadedBorder = ({
   path,
   thickness = BASE_THICKNESS,
   width,
-}: IShadedBorderProps) => {
+}: IBorderShadedProps) => {
   const filterId = nanoid();
-  const ratio = thicknessRatio(thickness);
+
+  const ratio = (baseNumber: number) =>
+    baseNumber * (thickness / BASE_THICKNESS);
 
   const boxShadows: IBoxShadow[] = [
     {
@@ -45,7 +44,7 @@ export const ShadedBorder = ({
   ];
 
   return (
-    <StyledShadedBorder width={width + thickness} height={height + thickness}>
+    <StyledBorderShaded width={width + thickness} height={height + thickness}>
       <FilterBoxShadow boxShadows={boxShadows} id={filterId} />
       <path
         d={path}
@@ -55,6 +54,6 @@ export const ShadedBorder = ({
         strokeWidth={thickness}
         transform={`translate(${thickness / 2}, ${thickness / 2})`}
       />
-    </StyledShadedBorder>
+    </StyledBorderShaded>
   );
 };

@@ -1,10 +1,10 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { PathCircle } from "../../svg";
-import { ShadedBorder } from "./ShadedBorder";
+import { BorderShaded } from "./BorderShaded";
 
 export default {
-  title: "Graphics/Layers/ShadedBorder",
-  component: ShadedBorder,
+  title: "Graphics/Layers/BorderShaded",
+  component: BorderShaded,
   argTypes: {
     path: {
       control: "text",
@@ -47,10 +47,10 @@ export default {
       table: { category: "Color" },
     },
   },
-} as ComponentMeta<typeof ShadedBorder>;
+} as ComponentMeta<typeof BorderShaded>;
 
-const Template: ComponentStory<typeof ShadedBorder> = (args) => (
-  <ShadedBorder {...args} />
+const Template: ComponentStory<typeof BorderShaded> = (args) => (
+  <BorderShaded {...args} />
 );
 
 const defaultArgs = {

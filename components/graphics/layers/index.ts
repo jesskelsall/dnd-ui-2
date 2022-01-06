@@ -1,3 +1,4 @@
 export * from "./BackgroundTexture/BackgroundTexture";
+export * from "./BorderShaded/BorderShaded";
 export * from "./PortraitHole/PortraitHole";
-export * from "./ShadedBorder/ShadedBorder";
+export * from "./TextShaded/TextShaded";
