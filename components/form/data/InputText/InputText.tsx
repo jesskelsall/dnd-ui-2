@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 import styled, { css } from "styled-components";
-import { CONTROL_COLORS } from "../../../../consts";
+import { disabledStyle, focusStyle } from "~/components/form/common";
+import { getColor } from "~/functions";
 
 export interface IStyledInputProps {
   disabled?: boolean;
@@ -12,24 +13,18 @@ export const StyledInput = styled.input(
     font-size: 1rem;
     padding: 0.5rem 1rem;
     border-radius: 100px;
-    border: 1px solid ${CONTROL_COLORS.GREY_LIGHT};
+    border: 1px solid ${getColor("border")};
+    background-color: transparent;
+    color: ${getColor("text")};
 
-    &:focus-visible {
-      outline: 1px solid ${CONTROL_COLORS.GREY_LIGHT};
-    }
+    ${focusStyle}
+    ${props.disabled && disabledStyle}
 
     &::placeholder {
-      color: ${CONTROL_COLORS.GREY_LIGHT};
+      opacity: 100%;
+      color: ${getColor("border")};
       font-style: italic;
     }
-
-    ${props.disabled &&
-    css`
-      background-color: ${CONTROL_COLORS.GREY_LIGHTEST};
-      color: ${CONTROL_COLORS.GREY};
-      opacity: 0.6;
-      pointer-events: none;
-    `}
   `
 );
 

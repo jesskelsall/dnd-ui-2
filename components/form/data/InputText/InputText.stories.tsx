@@ -1,4 +1,5 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { themeDecorator } from "~/.storybook/decorators";
 import { InputText } from "./InputText";
 
 export default {
@@ -28,6 +29,7 @@ export default {
       description: "The text inside the input field.",
     },
   },
+  decorators: [themeDecorator()],
 } as ComponentMeta<typeof InputText>;
 
 const Template: ComponentStory<typeof InputText> = (args) => (

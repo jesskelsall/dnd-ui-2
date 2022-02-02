@@ -10,8 +10,8 @@ export const InputNumber = ({
   <StyledInput
     disabled={disabled}
     onChange={(event) => {
-      const { value } = event.target;
-      setter(value === "" ? null : Number(value));
+      const { value: eventValue } = event.target;
+      setter(eventValue === "" ? null : Number(eventValue));
     }}
     placeholder={placeholder}
     tabIndex={skipTab ? -1 : undefined}

@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { InteractiveMap } from "../../components/display/InteractiveMap/InteractiveMap";
-import { SocketContext } from "../../context/socket";
+import { SocketContext } from "../../providers/socket";
 import { IMapView } from "../../types";
 
 const FullScreen = styled.div`

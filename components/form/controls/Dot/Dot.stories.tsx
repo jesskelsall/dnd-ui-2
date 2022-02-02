@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { CONTROL_COLORS } from "../../../../consts";
+import { themeDecorator } from "~/.storybook/decorators";
 import ButtonConfig from "../Button/Button.stories";
 import { Dot } from "./Dot";
 
@@ -7,25 +7,24 @@ export default {
   title: "Form/Controls/Dot",
   component: Dot,
   argTypes: ButtonConfig.argTypes,
+  decorators: [themeDecorator()],
 } as ComponentMeta<typeof Dot>;
 
-const Template =
-  (letter: string): ComponentStory<typeof Dot> =>
-  (args) =>
-    <Dot {...args}>{letter}</Dot>;
+const Template: ComponentStory<typeof Dot> = (args) => <Dot {...args} />;
 
-export const Blank = Template("").bind({});
+export const Blank = Template.bind({});
 Blank.args = {
   clickable: true,
-  color: CONTROL_COLORS.BLUE,
+  color: "grey",
   disabled: false,
   outline: false,
 };
 
-export const Letter = Template("X").bind({});
+export const Letter = Template.bind({});
 Letter.args = {
+  children: "X",
   clickable: true,
-  color: CONTROL_COLORS.RED,
+  color: "red",
   disabled: false,
   outline: false,
 };

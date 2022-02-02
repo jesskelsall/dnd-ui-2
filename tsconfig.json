@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "allowJs": true,
+    "baseUrl": "./node_modules",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "incremental": true,
@@ -11,11 +12,14 @@
     "moduleResolution": "node",
     "noEmit": true,
     "noFallthroughCasesInSwitch": true,
+    "paths": {
+      "~/*": ["../*"]
+    },
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
     "target": "es6"
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "server.js"],
+  "include": ["**/*.ts", "**/*.tsx", ".storybook/**/*.tsx", "next-env.d.ts", "server.js"],
   "exclude": ["node_modules"]
 }

@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import { useContext, useState } from "react";
 import styled from "styled-components";
-import { SocketContext } from "../../context/socket";
+import { SocketContext } from "../../providers/socket";
 import { IMapView } from "../../types";
 
 const FullScreen = styled.div`
@@ -80,16 +80,11 @@ const ControlMapPage: NextPage = () => {
         Hochwald
       </Button>
       <p>
-        URL:{" "}
-        <input onChange={linkInput(setUrl)} type="text" value={url}></input>
+        URL: <input onChange={linkInput(setUrl)} type="text" value={url} />
       </p>
       <p>
         Scale:{" "}
-        <input
-          onChange={linkInput(setScale)}
-          type="number"
-          value={scale}
-        ></input>
+        <input onChange={linkInput(setScale)} type="number" value={scale} />
       </p>
       <p>
         Horizontal:{" "}
@@ -97,7 +92,7 @@ const ControlMapPage: NextPage = () => {
           onChange={linkInput(setHorizontal)}
           type="number"
           value={horizontal}
-        ></input>
+        />
       </p>
       <p>
         Vertical:{" "}
@@ -105,13 +100,13 @@ const ControlMapPage: NextPage = () => {
           onChange={linkInput(setVertical)}
           type="number"
           value={vertical}
-        ></input>
+        />
       </p>
       <Button
         onClick={() =>
           updateMap({
             imageUrl: url,
-            scale: scale,
+            scale,
             positionHorizontal: horizontal,
             positionVertical: vertical,
           })

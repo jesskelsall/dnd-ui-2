@@ -1,5 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { CONTROL_COLORS } from "../../../../consts";
+import { themeDecorator } from "~/.storybook/decorators";
+import { MATERIAL_COLOURS } from "~/consts";
 import { Checkbox } from "./Checkbox";
 
 export default {
@@ -13,7 +14,7 @@ export default {
     color: {
       control: {
         type: "select",
-        options: CONTROL_COLORS,
+        options: MATERIAL_COLOURS,
       },
       description: "CSS color for use as the background",
     },
@@ -28,6 +29,7 @@ export default {
         "Whether this input should be skipped over when tabbing between controls.",
     },
   },
+  decorators: [themeDecorator()],
 } as ComponentMeta<typeof Checkbox>;
 
 const Template: ComponentStory<typeof Checkbox> = (args) => (
@@ -37,13 +39,13 @@ const Template: ComponentStory<typeof Checkbox> = (args) => (
 export const NotChecked = Template.bind({});
 NotChecked.args = {
   checked: false,
-  color: CONTROL_COLORS.BLUE,
+  color: "grey",
   skipTab: false,
 };
 
 export const Checked = Template.bind({});
 Checked.args = {
   checked: true,
-  color: CONTROL_COLORS.BLUE,
+  color: "grey",
   skipTab: false,
 };

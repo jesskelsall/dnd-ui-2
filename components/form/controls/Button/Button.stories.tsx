@@ -1,5 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { CONTROL_COLORS } from "../../../../consts";
+import { themeDecorator } from "~/.storybook/decorators";
+import { MATERIAL_COLOURS } from "~/consts";
 import { Button } from "./Button";
 
 export default {
@@ -13,7 +14,7 @@ export default {
     color: {
       control: {
         type: "select",
-        options: CONTROL_COLORS,
+        options: MATERIAL_COLOURS,
       },
       description: "CSS color for use as the background",
     },
@@ -30,6 +31,7 @@ export default {
       description: "Whether to style the button with only an outline.",
     },
   },
+  decorators: [themeDecorator()],
 } as ComponentMeta<typeof Button>;
 
 const Template: ComponentStory<typeof Button> = (args) => (
@@ -40,7 +42,7 @@ export const Primary = Template.bind({});
 Primary.args = {
   block: false,
   fake: false,
-  color: CONTROL_COLORS.BLUE,
+  color: "grey",
   disabled: false,
   outline: false,
 };
@@ -49,7 +51,7 @@ export const Block = Template.bind({});
 Block.args = {
   block: true,
   fake: false,
-  color: CONTROL_COLORS.BLUE,
+  color: "blue",
   disabled: false,
   outline: false,
 };
@@ -58,7 +60,7 @@ export const Fake = Template.bind({});
 Fake.args = {
   block: false,
   fake: true,
-  color: CONTROL_COLORS.BLUE,
+  color: "green",
   disabled: false,
   outline: false,
 };
@@ -67,7 +69,7 @@ export const Disabled = Template.bind({});
 Disabled.args = {
   block: false,
   fake: false,
-  color: CONTROL_COLORS.BLUE,
+  color: "orange",
   disabled: true,
   outline: false,
 };
@@ -76,7 +78,7 @@ export const Outline = Template.bind({});
 Outline.args = {
   block: false,
   fake: false,
-  color: CONTROL_COLORS.BLUE,
+  color: "red",
   disabled: false,
   outline: true,
 };

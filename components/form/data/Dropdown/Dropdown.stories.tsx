@@ -1,4 +1,5 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { themeDecorator } from "~/.storybook/decorators";
 import { Dropdown } from "./Dropdown";
 
 export default {
@@ -33,6 +34,7 @@ export default {
       description: "The selected option's value.",
     },
   },
+  decorators: [themeDecorator()],
 } as ComponentMeta<typeof Dropdown>;
 
 const Template: ComponentStory<typeof Dropdown> = (args) => (

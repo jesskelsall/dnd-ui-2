@@ -1,16 +1,18 @@
 import styled, { css } from "styled-components";
-import { CONTROL_COLORS, TControlColor } from "../../../../consts";
+import { disabledStyle, focusStyle } from "~/components/form/common";
+import { getColor } from "~/functions";
+import { MaterialColour } from "~/types";
 
 export interface IButtonProps {
   block?: boolean;
-  color?: TControlColor;
+  color?: MaterialColour;
   disabled?: boolean;
   fake?: boolean;
   outline?: boolean;
 }
 
 export const Button = styled.button((props: IButtonProps) => {
-  const color = props.color || CONTROL_COLORS.BLUE;
+  const color = getColor(props.color || "grey");
 
   return css`
     padding: 0.5rem 1rem;
@@ -18,8 +20,11 @@ export const Button = styled.button((props: IButtonProps) => {
     border-radius: 100px;
     background-color: ${color};
     font-size: 1rem;
-    color: ${CONTROL_COLORS.WHITE};
+    color: ${getColor("action")};
     transition: all 0.1s linear;
+
+    ${focusStyle}
+    ${props.disabled && disabledStyle}
 
     ${props.block &&
     css`
@@ -30,12 +35,6 @@ export const Button = styled.button((props: IButtonProps) => {
     css`
       background-color: transparent;
       color: ${color};
-    `}
-
-    ${props.disabled &&
-    css`
-      opacity: 0.6;
-      pointer-events: none;
     `}
 
     ${!props.fake &&

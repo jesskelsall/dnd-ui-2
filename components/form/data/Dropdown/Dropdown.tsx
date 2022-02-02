@@ -1,7 +1,8 @@
 import React, { Dispatch, SetStateAction } from "react";
 import styled, { css } from "styled-components";
-import { CONTROL_COLORS } from "../../../../consts";
-import { IOption, TOptionValue } from "../../../../types";
+import { disabledStyle, focusStyle } from "~/components/form/common";
+import { getColor } from "~/functions";
+import { IOption, TOptionValue } from "~/types";
 
 export interface ISelectProps {
   disabled?: boolean;
@@ -14,45 +15,49 @@ export const Select = styled.select(
     font-size: 1rem;
     padding: 0.5rem 1rem;
     border-radius: 100px;
-    border: 1px solid ${CONTROL_COLORS.GREY_LIGHT};
+    border: 1px solid ${getColor("border")};
+    background-color: transparent;
+    color: ${getColor("text")};
     appearance: none;
 
-    &:focus-visible {
-      outline: 1px solid ${CONTROL_COLORS.GREY_LIGHT};
-    }
-
-    ${props.disabled &&
-    css`
-      background-color: ${CONTROL_COLORS.GREY_LIGHTEST};
-      color: ${CONTROL_COLORS.GREY};
-      opacity: 0.6;
-      pointer-events: none;
-    `}
+    ${focusStyle}
+    ${props.disabled && disabledStyle}
 
     ${props.placeholderSelected &&
     css`
-      color: ${CONTROL_COLORS.GREY_LIGHT};
+      color: ${getColor("text")}99;
       font-style: italic;
     `}
   `
 );
 
-export const SelectWrapper = styled.div`
-  position: relative;
+export interface ISelectWrapperProps {
+  disabled?: boolean;
+}
 
-  &::after {
-    content: "";
-    position: absolute;
-    right: 1rem;
-    top: 0.9rem;
-    width: 0;
-    height: 0;
-    border-top: 0.5rem solid ${CONTROL_COLORS.GREY_LIGHT};
-    border-left: 0.5rem solid transparent;
-    border-right: 0.5rem solid transparent;
-    border-bottom: 0;
-  }
-`;
+export const SelectWrapper = styled.div(
+  (props: ISelectWrapperProps) => css`
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      right: 1rem;
+      top: 0.9rem;
+      width: 0;
+      height: 0;
+      border-top: 0.5rem solid ${getColor("border")};
+      border-left: 0.5rem solid transparent;
+      border-right: 0.5rem solid transparent;
+      border-bottom: 0;
+
+      ${props.disabled &&
+      css`
+        opacity: 0.6;
+      `}
+    }
+  `
+);
 
 export interface IDropdownProps<ValueType extends TOptionValue> {
   disabled?: boolean;
@@ -75,7 +80,8 @@ export const Dropdown = <ValueType extends TOptionValue = string>({
     options.length && typeof options[0].value === "number";
   const hasNoValue = value === "" || value === null;
 
-  const noNull = (value: TOptionValue) => (value === null ? "" : value);
+  const noNull = (optionValue: TOptionValue) =>
+    optionValue === null ? "" : optionValue;
 
   const onChangeSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
     let castValue: TOptionValue = event.target.value;
@@ -88,7 +94,7 @@ export const Dropdown = <ValueType extends TOptionValue = string>({
   };
 
   return (
-    <SelectWrapper>
+    <SelectWrapper disabled={disabled}>
       <Select
         disabled={disabled}
         onChange={onChangeSelect}
