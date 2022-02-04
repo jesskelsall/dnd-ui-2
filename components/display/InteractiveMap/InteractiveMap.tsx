@@ -20,7 +20,7 @@ export const StyledInteractiveMap = styled.div(
   `
 );
 
-export interface IInteractiveMapProps extends IStyledInteractiveMapProps {}
+export type IInteractiveMapProps = IStyledInteractiveMapProps;
 
 export const InteractiveMap = ({
   imageUrl,

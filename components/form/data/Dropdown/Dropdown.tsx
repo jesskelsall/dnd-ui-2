@@ -1,7 +1,15 @@
-import React, { Dispatch, SetStateAction } from "react";
+import _ from "lodash/fp";
+import React from "react";
 import styled, { css } from "styled-components";
 import { disabledStyle, focusStyle } from "~/components/form/common";
-import { getColor } from "~/functions";
+import {
+  FormData,
+  getColor,
+  OnChange,
+  setFormData,
+  Setter,
+  tabIndex,
+} from "~/functions";
 import { IOption, TOptionValue } from "~/types";
 
 export interface ISelectProps {
@@ -28,6 +36,14 @@ export const Select = styled.select(
       color: ${getColor("text")}99;
       font-style: italic;
     `}
+
+    > option {
+      color: initial;
+
+      &[disabled] {
+        color: grey;
+      }
+    }
   `
 );
 
@@ -60,24 +76,30 @@ export const SelectWrapper = styled.div(
 );
 
 export interface IDropdownProps<ValueType extends TOptionValue> {
+  data: FormData;
   disabled?: boolean;
+  onChange?: OnChange<ValueType>;
+  path: string;
   placeholder?: string;
   options: IOption<ValueType>[];
-  setter: Dispatch<SetStateAction<ValueType>>;
+  setter: Setter;
   skipTab?: boolean;
-  value: TOptionValue;
 }
 
 export const Dropdown = <ValueType extends TOptionValue = string>({
-  disabled,
+  data,
+  disabled = false,
+  onChange,
+  path,
   placeholder,
   options,
   setter,
-  skipTab,
-  value,
+  skipTab = false,
 }: IDropdownProps<ValueType>) => {
   const valuesAreNumbers =
     options.length && typeof options[0].value === "number";
+
+  const value = _.get(path, data) as ValueType;
   const hasNoValue = value === "" || value === null;
 
   const noNull = (optionValue: TOptionValue) =>
@@ -90,7 +112,13 @@ export const Dropdown = <ValueType extends TOptionValue = string>({
       castValue = castValue === "" ? null : parseFloat(castValue);
     }
 
-    setter(castValue as ValueType);
+    setFormData<ValueType>(
+      castValue as ValueType,
+      path,
+      data,
+      setter,
+      onChange
+    );
   };
 
   return (
@@ -99,7 +127,7 @@ export const Dropdown = <ValueType extends TOptionValue = string>({
         disabled={disabled}
         onChange={onChangeSelect}
         placeholderSelected={Boolean(placeholder && hasNoValue)}
-        tabIndex={skipTab ? -1 : undefined}
+        tabIndex={tabIndex(skipTab)}
         value={noNull(value)}
       >
         {placeholder && (

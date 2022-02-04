@@ -7,21 +7,35 @@ export default {
   title: "Form/Data/Checkbox",
   component: Checkbox,
   argTypes: {
-    checked: {
-      control: "boolean",
-      description: "Whether the checkbox is checked or not.",
-    },
-    color: {
+    colour: {
       control: {
         type: "select",
         options: MATERIAL_COLOURS,
       },
-      description: "CSS color for use as the background",
+      description: "CSS colour for use as the background",
+    },
+    data: {
+      control: "object",
+      description:
+        "The data object that the value of the checkbox is stored in.",
+    },
+    disabled: {
+      control: "boolean",
+      description: "Whether this input is disabled or not.",
+    },
+    onChange: {
+      description:
+        "Optional function that is triggered when the value changes.",
+    },
+    path: {
+      control: "text",
+      description:
+        "Lodash FP path to the checkbox value within the data object.",
     },
     setter: {
       control: "function",
       description:
-        "The React useState setter function for inverting the checkbox.",
+        "The React useState setter function for updating the data object.",
     },
     skipTab: {
       control: "boolean",
@@ -38,14 +52,18 @@ const Template: ComponentStory<typeof Checkbox> = (args) => (
 
 export const NotChecked = Template.bind({});
 NotChecked.args = {
-  checked: false,
-  color: "grey",
+  colour: "grey",
+  data: { checkbox: false },
+  disabled: false,
+  path: "checkbox",
   skipTab: false,
 };
 
 export const Checked = Template.bind({});
 Checked.args = {
-  checked: true,
-  color: "grey",
+  colour: "grey",
+  data: { checkbox: true },
+  disabled: false,
+  path: "checkbox",
   skipTab: false,
 };

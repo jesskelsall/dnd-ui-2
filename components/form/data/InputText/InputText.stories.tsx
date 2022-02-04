@@ -6,9 +6,23 @@ export default {
   title: "Form/Data/InputText",
   component: InputText,
   argTypes: {
+    data: {
+      control: "object",
+      description:
+        "The data object that the value of the input field is stored in.",
+    },
     disabled: {
       control: "boolean",
       description: "Whether the input field is disabled or not.",
+    },
+    onChange: {
+      description:
+        "Optional function that is triggered when the value changes.",
+    },
+    path: {
+      control: "text",
+      description:
+        "Lodash FP path to the input field value within the data object.",
     },
     placeholder: {
       control: "text",
@@ -17,16 +31,12 @@ export default {
     setter: {
       control: "function",
       description:
-        "The React useState setter function for updating the input value.",
+        "The React useState setter function for updating the data object.",
     },
     skipTab: {
       control: "boolean",
       description:
         "Whether this input should be skipped over when tabbing between controls.",
-    },
-    value: {
-      control: "text",
-      description: "The text inside the input field.",
     },
   },
   decorators: [themeDecorator()],
@@ -38,24 +48,27 @@ const Template: ComponentStory<typeof InputText> = (args) => (
 
 export const Primary = Template.bind({});
 Primary.args = {
+  data: { input: "InputText" },
   disabled: false,
+  path: "input",
   placeholder: "",
   skipTab: false,
-  value: "InputText",
 };
 
 export const Placeholder = Template.bind({});
 Placeholder.args = {
+  data: { input: "" },
   disabled: false,
+  path: "input",
   placeholder: "Placeholder",
   skipTab: false,
-  value: "",
 };
 
 export const Disabled = Template.bind({});
 Disabled.args = {
+  data: { input: "InputText" },
   disabled: true,
+  path: "input",
   placeholder: "",
   skipTab: false,
-  value: "InputText",
 };

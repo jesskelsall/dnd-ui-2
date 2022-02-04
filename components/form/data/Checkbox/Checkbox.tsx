@@ -1,11 +1,18 @@
-import { Dispatch, SetStateAction } from "react";
+import _ from "lodash/fp";
 import styled, { css } from "styled-components";
 import { disabledStyle, focusStyle } from "~/components/form/common";
-import { getColor } from "~/functions";
+import {
+  FormData,
+  getColor,
+  OnChange,
+  setFormData,
+  Setter,
+  tabIndex,
+} from "~/functions";
 import { MaterialColour } from "~/types";
 
 export interface IStyledCheckboxProps {
-  color: MaterialColour;
+  colour: MaterialColour;
   disabled?: boolean;
 }
 
@@ -27,7 +34,7 @@ export const StyledCheckbox = styled.input.attrs({
     transition: all 0.1s linear;
 
     &:checked {
-      background-color: ${props.color};
+      background-color: ${props.colour};
       background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='${(
         allProps
       ) =>
@@ -47,25 +54,35 @@ export const StyledCheckbox = styled.input.attrs({
 );
 
 export interface ICheckboxProps {
-  checked: boolean;
-  color?: MaterialColour;
+  colour?: MaterialColour;
+  data: FormData;
   disabled?: boolean;
-  setter: Dispatch<SetStateAction<boolean>>;
+  onChange?: OnChange<boolean>;
+  path: string;
+  setter: Setter;
   skipTab?: boolean;
 }
 
 export const Checkbox = ({
-  checked,
-  disabled,
-  color,
+  colour = "grey",
+  data,
+  disabled = false,
+  onChange,
+  path,
   setter,
-  skipTab,
-}: ICheckboxProps) => (
-  <StyledCheckbox
-    checked={checked}
-    color={color || "grey"}
-    disabled={disabled}
-    onChange={() => setter(!checked)}
-    tabIndex={skipTab ? -1 : undefined}
-  />
-);
+  skipTab = false,
+}: ICheckboxProps) => {
+  const checked = _.get(path, data) as boolean;
+
+  return (
+    <StyledCheckbox
+      checked={checked}
+      colour={colour}
+      disabled={disabled}
+      onChange={() =>
+        setFormData<boolean>(!checked, path, data, setter, onChange)
+      }
+      tabIndex={tabIndex(skipTab)}
+    />
+  );
+};

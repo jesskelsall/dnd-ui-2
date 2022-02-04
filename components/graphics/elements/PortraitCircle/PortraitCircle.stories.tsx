@@ -99,7 +99,7 @@ const defaultBackgroundArgs = {
   backgroundScale: 100,
   backgroundFilterStyle: "",
   backgroundAnimation: {
-    type: "slide" as "slide",
+    type: "slide" as const,
     speed: 200,
     horizontal: 800,
     vertical: 0,

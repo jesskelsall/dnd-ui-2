@@ -6,7 +6,9 @@ module.exports = {
     "plugin:security/recommended",
     "plugin:@next/next/recommended",
     "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended",
   ],
+  parser: "@typescript-eslint/parser",
   plugins: ["prettier", "security"],
   rules: {
     "import/extensions": "off",

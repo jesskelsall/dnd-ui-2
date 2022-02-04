@@ -6,9 +6,23 @@ export default {
   title: "Form/Data/Dropdown",
   component: Dropdown,
   argTypes: {
+    data: {
+      control: "object",
+      description:
+        "The data object that the value of the dropdown is stored in.",
+    },
     disabled: {
       control: "boolean",
       description: "Whether the dropdown is disabled or not.",
+    },
+    onChange: {
+      description:
+        "Optional function that is triggered when the value changes.",
+    },
+    path: {
+      control: "text",
+      description:
+        "Lodash FP path to the input field value within the data object.",
     },
     placeholder: {
       control: "text",
@@ -22,16 +36,12 @@ export default {
     setter: {
       control: "function",
       description:
-        "The React useState setter function for updating the dropdown.",
+        "The React useState setter function for updating the data object.",
     },
     skipTab: {
       control: "boolean",
       description:
         "Whether this dropdown should be skipped over when tabbing between controls.",
-    },
-    value: {
-      control: "text",
-      description: "The selected option's value.",
     },
   },
   decorators: [themeDecorator()],
@@ -58,16 +68,19 @@ const textOptions = [
 
 export const Text = Template.bind({});
 Text.args = {
+  data: { dropdown: textOptions[0].value },
   disabled: false,
+  path: "dropdown",
   placeholder: "",
   options: textOptions,
   skipTab: false,
-  value: textOptions[0].value,
 };
 
 export const Numbers = Template.bind({});
 Numbers.args = {
+  data: { dropdown: 2 },
   disabled: false,
+  path: "dropdown",
   placeholder: "",
   options: [
     {
@@ -84,23 +97,24 @@ Numbers.args = {
     },
   ],
   skipTab: false,
-  value: 2,
 };
 
 export const Disabled = Template.bind({});
 Disabled.args = {
+  data: { dropdown: textOptions[0].value },
   disabled: true,
+  path: "dropdown",
   placeholder: "",
   options: textOptions,
   skipTab: false,
-  value: textOptions[0].value,
 };
 
 export const Placeholder = Template.bind({});
 Placeholder.args = {
+  data: { dropdown: null },
   disabled: false,
+  path: "dropdown",
   placeholder: "Placeholder",
   options: textOptions,
   skipTab: false,
-  value: null,
 };

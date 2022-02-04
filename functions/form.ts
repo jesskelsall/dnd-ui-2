@@ -1,13 +1,19 @@
 import _ from "lodash/fp";
+import { Dispatch, SetStateAction } from "react";
 
-export type Setter = (
-  value: string,
-  data: Record<string, unknown>,
-  path: string
-) => void;
+export type FormData = Record<string, unknown>;
+export type Setter = Dispatch<SetStateAction<FormData>>;
+export type OnChange<ValueType> = (value: ValueType) => void;
 
-export const defaultSetter = <ValueType>(
+export const setFormData = <ValueType>(
   value: ValueType,
-  data: Record<string, unknown>,
-  path: string
-) => _.set(path, value, data);
+  path: string,
+  data: FormData,
+  setter: Setter,
+  onChange?: OnChange<ValueType>
+) => {
+  if (onChange) onChange(value);
+  return setter(_.set(path, value, data));
+};
+
+export const tabIndex = (skipTab: boolean) => (skipTab ? -1 : undefined);
