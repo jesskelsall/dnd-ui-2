@@ -1,15 +1,9 @@
 import _ from "lodash/fp";
+import { Dispatch, SetStateAction } from "react";
 import styled, { css } from "styled-components";
 import { disabledStyle, focusStyle } from "~/components/form/common";
-import {
-  FormData,
-  getColor,
-  OnChange,
-  setFormData,
-  Setter,
-  tabIndex,
-} from "~/functions";
-import { MaterialColour } from "~/types";
+import { getColor, setFormData, tabIndex } from "~/functions";
+import { MaterialColour, OnChange } from "~/types";
 
 export interface IStyledCheckboxProps {
   colour: MaterialColour;
@@ -53,17 +47,17 @@ export const StyledCheckbox = styled.input.attrs({
   `
 );
 
-export interface ICheckboxProps {
+export interface ICheckboxProps<DataType extends object> {
   colour?: MaterialColour;
-  data: FormData;
+  data: DataType;
   disabled?: boolean;
   onChange?: OnChange<boolean>;
   path: string;
-  setter: Setter;
+  setter: Dispatch<SetStateAction<DataType>>;
   skipTab?: boolean;
 }
 
-export const Checkbox = ({
+export function Checkbox<DataType extends object>({
   colour = "grey",
   data,
   disabled = false,
@@ -71,7 +65,7 @@ export const Checkbox = ({
   path,
   setter,
   skipTab = false,
-}: ICheckboxProps) => {
+}: ICheckboxProps<DataType>) {
   const checked = _.get(path, data) as boolean;
 
   return (
@@ -80,9 +74,9 @@ export const Checkbox = ({
       colour={colour}
       disabled={disabled}
       onChange={() =>
-        setFormData<boolean>(!checked, path, data, setter, onChange)
+        setFormData<boolean, DataType>(!checked, path, data, setter, onChange)
       }
       tabIndex={tabIndex(skipTab)}
     />
   );
-};
+}

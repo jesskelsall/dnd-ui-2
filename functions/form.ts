@@ -1,15 +1,12 @@
 import _ from "lodash/fp";
 import { Dispatch, SetStateAction } from "react";
+import { OnChange } from "~/types";
 
-export type FormData = Record<string, unknown>;
-export type Setter = Dispatch<SetStateAction<FormData>>;
-export type OnChange<ValueType> = (value: ValueType) => void;
-
-export const setFormData = <ValueType>(
+export const setFormData = <ValueType, DataType extends object>(
   value: ValueType,
   path: string,
-  data: FormData,
-  setter: Setter,
+  data: DataType,
+  setter: Dispatch<SetStateAction<DataType>>,
   onChange?: OnChange<ValueType>
 ) => {
   if (onChange) onChange(value);

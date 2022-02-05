@@ -1,2 +1,1 @@
-export * from "./disabledStyle";
-export * from "./focusStyle";
+export * from "./styles";

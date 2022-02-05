@@ -16,6 +16,9 @@ export const dark: DefaultTheme = {
   colors: {
     action: "#F5F5F5", // Grey 100
     background: "#212121", // Grey 900
+    banner1: "#757575", // Grey 600
+    banner2: "#616161", // Grey 700
+    banner3: "#424242", // Grey 800
     border: "#616161", // Grey 700
     text: "#BDBDBD", // Grey 400
     heading: "#F5F5F5", // Grey 100

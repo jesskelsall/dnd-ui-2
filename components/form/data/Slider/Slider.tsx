@@ -1,17 +1,18 @@
 import _ from "lodash/fp";
-import { ChangeEvent } from "react";
+import { ChangeEvent, Dispatch, SetStateAction } from "react";
 import styled, { css } from "styled-components";
 import { disabledStyle, focusStyle } from "~/components/form/common";
 import { StyledInput } from "~/components/form/data/InputText/InputText";
-import {
-  FormData,
-  getColor,
-  OnChange,
-  setFormData,
-  Setter,
-  tabIndex,
-} from "~/functions";
-import { MaterialColour } from "~/types";
+import { getColor, setFormData, tabIndex } from "~/functions";
+import { FormNumber, MaterialColour, OnChange } from "~/types";
+
+export const SliderContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex: 1;
+  height: 2rem;
+`;
 
 export const Input = styled(StyledInput).attrs({
   type: "number",
@@ -51,28 +52,21 @@ export const Range = styled.input.attrs({
   `
 );
 
-export const SliderContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  height: 2rem;
-`;
-
-export interface ISliderProps {
+export interface ISliderProps<DataType extends object> {
   colour?: MaterialColour;
-  data: FormData;
+  data: DataType;
   disabled?: boolean;
   max: number;
   min: number;
   numberInput?: boolean;
-  onChange?: OnChange<number | null>;
+  onChange?: OnChange<FormNumber>;
   path: string;
-  setter: Setter;
+  setter: Dispatch<SetStateAction<DataType>>;
   skipTab?: boolean;
   step?: number;
 }
 
-export const Slider = ({
+export function Slider<DataType extends object>({
   colour = "grey",
   data,
   disabled = false,
@@ -84,23 +78,22 @@ export const Slider = ({
   setter,
   skipTab = false,
   step = 1,
-}: ISliderProps) => {
+}: ISliderProps<DataType>) {
   const dataValue = _.get(path, data) as number | null;
   const inputValue: number | string = _.isNumber(dataValue) ? dataValue : "";
 
+  const sliderMinDiff = min / step;
   const sliderMin = 0;
-  const sliderMax = (max - min + 1) / step;
+  const sliderMax = max / step - sliderMinDiff;
   const sliderValue = _.isNumber(inputValue)
-    ? (inputValue - min + 1) / step
+    ? inputValue / step - sliderMinDiff
     : sliderMin;
 
   const onChangeRange = (event: ChangeEvent<HTMLInputElement>) => {
     const { value: eventValue } = event.target;
+    const value = eventValue === "" ? min : Number(eventValue) * step + min;
 
-    const value =
-      eventValue === "" ? min : (Number(eventValue) - 1 + min) * step;
-
-    setFormData<number>(value, path, data, setter, onChange);
+    setFormData<number, DataType>(value, path, data, setter, onChange);
   };
 
   return (
@@ -111,7 +104,13 @@ export const Slider = ({
           onChange={(event) => {
             const { value: eventValue } = event.target;
             const newValue = eventValue === "" ? null : Number(eventValue);
-            setFormData<number | null>(newValue, path, data, setter, onChange);
+            setFormData<FormNumber, DataType>(
+              newValue,
+              path,
+              data,
+              setter,
+              onChange
+            );
           }}
           tabIndex={tabIndex(skipTab)}
           value={inputValue}
@@ -128,4 +127,4 @@ export const Slider = ({
       />
     </SliderContainer>
   );
-};
+}

@@ -1,16 +1,9 @@
 import _ from "lodash/fp";
-import React from "react";
+import { Dispatch, SetStateAction } from "react";
 import styled, { css } from "styled-components";
 import { disabledStyle, focusStyle } from "~/components/form/common";
-import {
-  FormData,
-  getColor,
-  OnChange,
-  setFormData,
-  Setter,
-  tabIndex,
-} from "~/functions";
-import { IOption, TOptionValue } from "~/types";
+import { getColor, setFormData, tabIndex } from "~/functions";
+import { IOption, OnChange, TOptionValue } from "~/types";
 
 export interface ISelectProps {
   disabled?: boolean;
@@ -75,18 +68,24 @@ export const SelectWrapper = styled.div(
   `
 );
 
-export interface IDropdownProps<ValueType extends TOptionValue> {
-  data: FormData;
+export interface IDropdownProps<
+  DataType extends object,
+  ValueType extends TOptionValue
+> {
+  data: DataType;
   disabled?: boolean;
   onChange?: OnChange<ValueType>;
   path: string;
   placeholder?: string;
   options: IOption<ValueType>[];
-  setter: Setter;
+  setter: Dispatch<SetStateAction<DataType>>;
   skipTab?: boolean;
 }
 
-export const Dropdown = <ValueType extends TOptionValue = string>({
+export function Dropdown<
+  DataType extends object,
+  ValueType extends TOptionValue = string
+>({
   data,
   disabled = false,
   onChange,
@@ -95,7 +94,7 @@ export const Dropdown = <ValueType extends TOptionValue = string>({
   options,
   setter,
   skipTab = false,
-}: IDropdownProps<ValueType>) => {
+}: IDropdownProps<DataType, ValueType>) {
   const valuesAreNumbers =
     options.length && typeof options[0].value === "number";
 
@@ -112,7 +111,7 @@ export const Dropdown = <ValueType extends TOptionValue = string>({
       castValue = castValue === "" ? null : parseFloat(castValue);
     }
 
-    setFormData<ValueType>(
+    setFormData<ValueType, DataType>(
       castValue as ValueType,
       path,
       data,
@@ -143,4 +142,4 @@ export const Dropdown = <ValueType extends TOptionValue = string>({
       </Select>
     </SelectWrapper>
   );
-};
+}

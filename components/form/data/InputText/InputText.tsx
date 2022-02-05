@@ -1,14 +1,9 @@
 import _ from "lodash/fp";
+import { Dispatch, SetStateAction } from "react";
 import styled, { css } from "styled-components";
 import { disabledStyle, focusStyle } from "~/components/form/common";
-import {
-  FormData,
-  getColor,
-  OnChange,
-  setFormData,
-  Setter,
-  tabIndex,
-} from "~/functions";
+import { getColor, setFormData, tabIndex } from "~/functions";
+import { OnChange } from "~/types";
 
 export interface IStyledInputProps {
   disabled?: boolean;
@@ -35,17 +30,17 @@ export const StyledInput = styled.input(
   `
 );
 
-export interface IInputProps<InputType> {
-  data: FormData;
+export interface IInputProps<InputType, DataType extends object> {
+  data: DataType;
   disabled?: boolean;
   onChange?: OnChange<InputType>;
   path: string;
   placeholder?: string;
-  setter: Setter;
+  setter: Dispatch<SetStateAction<DataType>>;
   skipTab?: boolean;
 }
 
-export const InputText = ({
+export function InputText<DataType extends object>({
   data,
   disabled = false,
   onChange,
@@ -53,14 +48,20 @@ export const InputText = ({
   placeholder,
   setter,
   skipTab = false,
-}: IInputProps<string>) => {
+}: IInputProps<string, DataType>) {
   const value = _.get(path, data) as string;
 
   return (
     <StyledInput
       disabled={disabled}
       onChange={(event) =>
-        setFormData<string>(event.target.value, path, data, setter, onChange)
+        setFormData<string, DataType>(
+          event.target.value,
+          path,
+          data,
+          setter,
+          onChange
+        )
       }
       placeholder={placeholder}
       tabIndex={tabIndex(skipTab)}
@@ -68,4 +69,4 @@ export const InputText = ({
       value={value}
     />
   );
-};
+}

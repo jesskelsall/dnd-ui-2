@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import { themeDecorator } from "~/.storybook/decorators";
-import { Button } from "../Button/Button";
+import { Button } from "../Button";
 import { ButtonGroup } from "./ButtonGroup";
 
 export default {

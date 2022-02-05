@@ -1,8 +1,9 @@
 import _ from "lodash/fp";
 import { setFormData, tabIndex } from "~/functions";
+import { FormNumber } from "~/types";
 import { IInputProps, StyledInput } from "../InputText/InputText";
 
-export const InputNumber = ({
+export function InputNumber<DataType extends object>({
   data,
   disabled = false,
   onChange,
@@ -10,8 +11,8 @@ export const InputNumber = ({
   placeholder,
   setter,
   skipTab = false,
-}: IInputProps<number | null>) => {
-  const dataValue = _.get(path, data) as number | null;
+}: IInputProps<FormNumber, DataType>) {
+  const dataValue = _.get(path, data) as FormNumber;
   const fieldValue: number | string = _.isNumber(dataValue) ? dataValue : "";
 
   return (
@@ -20,7 +21,13 @@ export const InputNumber = ({
       onChange={(event) => {
         const { value: eventValue } = event.target;
         const newValue = eventValue === "" ? null : Number(eventValue);
-        setFormData<number | null>(newValue, path, data, setter, onChange);
+        setFormData<FormNumber, DataType>(
+          newValue,
+          path,
+          data,
+          setter,
+          onChange
+        );
       }}
       placeholder={placeholder}
       tabIndex={tabIndex(skipTab)}
@@ -28,4 +35,4 @@ export const InputNumber = ({
       value={fieldValue}
     />
   );
-};
+}

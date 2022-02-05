@@ -10,6 +10,9 @@ export type ThemeColour =
   | MaterialColour
   | "action"
   | "background"
+  | "banner1"
+  | "banner2"
+  | "banner3"
   | "border"
   | "focus"
   | "heading"
