@@ -1,11 +1,6 @@
 import { NextPage } from "next";
 import styled from "styled-components";
-import {
-  FilterBoxShadow,
-  PathCircle,
-  PathPill,
-  PathStamp,
-} from "../components/graphics";
+import { FilterBoxShadow, PathPill } from "../components/graphics";
 
 const FancyFont = styled.h1`
   font-family: Metamorphous, Times New Roman, serif;

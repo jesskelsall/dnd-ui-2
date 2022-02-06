@@ -21,5 +21,6 @@ module.exports = {
     "react/jsx-filename-extension": ["warn", { extensions: [".ts", ".tsx"] }],
     "react/jsx-key": ["error", { checkFragmentShorthand: true }],
     "react/jsx-props-no-spreading": "off",
+    "react/require-default-props": "off",
   },
 };

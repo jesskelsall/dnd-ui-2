@@ -1,4 +1,4 @@
-import { createGlobalStyle, DefaultTheme } from "styled-components";
+import { createGlobalStyle, IDefaultTheme } from "styled-components";
 import { getColor } from "~/functions";
 
 export const GlobalStyles = createGlobalStyle`
@@ -10,9 +10,14 @@ export const GlobalStyles = createGlobalStyle`
     font-size: 16px;
     color: ${getColor("text")}
   }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 `;
 
-export const dark: DefaultTheme = {
+export const dark: IDefaultTheme = {
   colors: {
     action: "#F5F5F5", // Grey 100
     background: "#212121", // Grey 900
