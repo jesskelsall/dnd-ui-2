@@ -11,70 +11,9 @@ import {
   InputText,
   Screen,
   Slider,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeaderCell,
-  TableHeaderRow,
-  TableRow,
 } from "~/components";
 import { Debug } from "~/components/Debug";
 import { FormNumber } from "~/types";
-
-interface TableRow {
-  name: string;
-  race: string;
-  class: string;
-}
-
-const tableData: TableRow[] = [
-  {
-    name: "Copper Eye Guard",
-    race: "Elf",
-    class: "",
-  },
-  {
-    name: "Jonala Shirent",
-    race: "Elf",
-    class: "Sorcerer",
-  },
-  {
-    name: "Penance Zahiri",
-    race: "Tiefling",
-    class: "Paladin",
-  },
-  {
-    name: "Petjor Yordua",
-    race: "Elf",
-    class: "",
-  },
-  {
-    name: "Skeleton",
-    race: "",
-    class: "",
-  },
-  {
-    name: "Updraft",
-    race: "Kenku",
-    class: "Warlock",
-  },
-  {
-    name: "Viven Bouxelles",
-    race: "",
-    class: "",
-  },
-  {
-    name: "Zarrus Maleron",
-    race: "Tiefling",
-    class: "Druid",
-  },
-  {
-    name: "Zolné Windclaw",
-    race: "Leonin",
-    class: "Barbarian",
-  },
-];
 
 interface Data {
   text: string;
@@ -143,24 +82,6 @@ const Home: NextPage = () => {
           </FormRow>
         </FormGroup>
         <Debug value={data} />
-        <Table>
-          <TableHead>
-            <TableHeaderRow>
-              <TableHeaderCell>Real Name</TableHeaderCell>
-              <TableHeaderCell>Race</TableHeaderCell>
-              <TableHeaderCell>Class</TableHeaderCell>
-            </TableHeaderRow>
-          </TableHead>
-          <TableBody>
-            {tableData.map((character) => (
-              <TableRow key={character.name}>
-                <TableCell>{character.name}</TableCell>
-                <TableCell>{character.race}</TableCell>
-                <TableCell>{character.class}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
       </Form>
     </Screen>
   );

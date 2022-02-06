@@ -63,7 +63,7 @@ const CrudPage: NextPage = () => {
         sendCreate={sendCreate}
         sendDelete={sendDelete}
         sortBy={["name"]}
-        title="Characters"
+        title="CRUD"
       />
     </Screen>
   );

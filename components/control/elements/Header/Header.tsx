@@ -1,7 +1,8 @@
-import styled from "styled-components";
 import _ from "lodash/fp";
-import { getColor } from "~/functions";
+import Link from "next/link";
+import styled from "styled-components";
 import { SyncButton } from "~/components/control/elements/SyncButton";
+import { getColor } from "~/functions";
 
 export const StyledHeader = styled.header`
   display: flex;
@@ -16,7 +17,7 @@ export const HeaderSide = styled.div`
   gap: 0.5rem;
 `;
 
-export const HeaderTitle = styled.span`
+export const HeaderTitle = styled.a`
   color: ${getColor("heading")};
   font-size: 1.25rem;
 `;
@@ -24,7 +25,9 @@ export const HeaderTitle = styled.span`
 export const Header = () => (
   <StyledHeader>
     <HeaderSide>
-      <HeaderTitle>dnd-ui-2</HeaderTitle>
+      <Link href="/" passHref>
+        <HeaderTitle>dnd-ui-2</HeaderTitle>
+      </Link>
     </HeaderSide>
     <HeaderSide>
       <SyncButton
