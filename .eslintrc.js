@@ -16,6 +16,7 @@ module.exports = {
     "import/no-extraneous-dependencies": ["error", { devDependencies: true }],
     "import/no-unresolved": ["error", { ignore: ["^~/"] }],
     "import/prefer-default-export": "off",
+    "no-console": ["warn", { allow: ["error", "info", "warn"] }],
     "prettier/prettier": "error",
     "react-hooks/exhaustive-deps": "warn",
     "react/jsx-filename-extension": ["warn", { extensions: [".ts", ".tsx"] }],
