@@ -1,7 +1,7 @@
-import { IMapView } from "./MapScreen";
+import { IMapScreen } from "./MapScreen";
 
 export interface IDataCopy {
-  views: {
-    map: IMapView;
+  screens: {
+    map: IMapScreen;
   };
 }
