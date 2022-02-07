@@ -1,10 +1,10 @@
 import _ from "lodash/fp";
 import { ChangeEvent, Dispatch, SetStateAction } from "react";
 import styled, { css } from "styled-components";
-import { disabledStyle, focusStyle } from "~/components/framework/common";
-import { StyledInput } from "~/components/framework/data/InputText/InputText";
-import { getColor, setFormData, tabIndex } from "~/functions";
-import { FormNumber, MaterialColour, OnChange } from "~/types";
+import { getColor, setFormData, tabIndex } from "../../../../functions";
+import { FormNumber, MaterialColour, OnChange } from "../../../../types";
+import { disabledStyle, focusStyle } from "../../common";
+import { StyledInput } from "../InputText/InputText";
 
 export const SliderContainer = styled.div`
   display: flex;

@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { themeDecorator } from "~/.storybook/decorators";
+import { themeDecorator } from "../../../../.storybook/decorators";
 import ButtonConfig from "../Button/Button.stories";
 import { Dot } from "./Dot";
 
@@ -14,17 +14,17 @@ const Template: ComponentStory<typeof Dot> = (args) => <Dot {...args} />;
 
 export const Blank = Template.bind({});
 Blank.args = {
-  clickable: true,
-  color: "grey",
+  colour: "grey",
   disabled: false,
+  fake: false,
   outline: false,
 };
 
 export const Letter = Template.bind({});
 Letter.args = {
   children: "X",
-  clickable: true,
-  color: "red",
+  colour: "red",
   disabled: false,
+  fake: false,
   outline: false,
 };

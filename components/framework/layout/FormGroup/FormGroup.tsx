@@ -1,6 +1,6 @@
 import React from "react";
 import styled, { css } from "styled-components";
-import { getColor } from "~/functions";
+import { getColor } from "../../../../functions";
 
 const spacing = css`
   &:not(:last-child) {

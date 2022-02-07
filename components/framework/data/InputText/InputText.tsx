@@ -1,9 +1,9 @@
 import _ from "lodash/fp";
 import { Dispatch, SetStateAction } from "react";
 import styled, { css } from "styled-components";
-import { disabledStyle, focusStyle } from "~/components/framework/common";
-import { getColor, setFormData, tabIndex } from "~/functions";
-import { OnChange } from "~/types";
+import { getColor, setFormData, tabIndex } from "../../../../functions";
+import { OnChange } from "../../../../types";
+import { disabledStyle, focusStyle } from "../../common";
 
 export interface IStyledInputProps {
   disabled?: boolean;

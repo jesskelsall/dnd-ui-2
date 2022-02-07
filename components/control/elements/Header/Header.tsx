@@ -1,8 +1,8 @@
 import _ from "lodash/fp";
 import Link from "next/link";
 import styled from "styled-components";
-import { SyncButton } from "~/components/control/elements/SyncButton";
-import { getColor } from "~/functions";
+import { SyncButton } from "../SyncButton";
+import { getColor } from "../../../../functions";
 
 export const StyledHeader = styled.header`
   display: flex;

@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { themeDecorator } from "~/.storybook/decorators";
+import { themeDecorator } from "../../../../.storybook/decorators";
 import { InputText } from "./InputText";
 
 export default {

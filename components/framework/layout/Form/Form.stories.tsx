@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { themeDecorator } from "~/.storybook/decorators";
 import { Button } from "../..";
+import { themeDecorator } from "../../../../.storybook/decorators";
 import { Form } from "./Form";
 
 export default {

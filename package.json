@@ -7,7 +7,7 @@
     "dev": "next dev",
     "lint": "next lint --fix",
     "prepare": "husky install",
-    "start": "tsc -p ./server/tsconfig.json && node ./server/dist/index.js",
+    "start": "tsc -p ./server/tsconfig.json && node ./server/dist/server/src/index.js",
     "storybook": "start-storybook -p 6006",
     "test": "jest --verbose"
   },

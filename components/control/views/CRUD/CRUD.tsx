@@ -14,8 +14,8 @@ import {
   TableHeaderCell,
   TableHeaderRow,
   TableRow,
-} from "~/components/framework";
-import { randomId } from "~/functions";
+} from "../../../framework";
+import { randomId } from "../../../../functions";
 
 const ButtonCell = styled(TableHeaderCell)`
   width: 0;

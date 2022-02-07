@@ -1,4 +1,4 @@
-import { Button } from "~/components/framework/controls/Button";
+import { Button } from "../../../framework/controls/Button";
 
 interface ISyncButtonProps {
   applyChanges: () => void;

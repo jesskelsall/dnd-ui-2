@@ -1,9 +1,9 @@
 import _ from "lodash/fp";
 import { Dispatch, SetStateAction } from "react";
 import styled, { css } from "styled-components";
-import { disabledStyle, focusStyle } from "~/components/framework/common";
-import { getColor, setFormData, tabIndex } from "~/functions";
-import { MaterialColour, OnChange } from "~/types";
+import { disabledStyle, focusStyle } from "../../common";
+import { getColor, setFormData, tabIndex } from "../../../../functions";
+import { MaterialColour, OnChange } from "../../../../types";
 
 export interface IStyledCheckboxProps {
   colour: MaterialColour;

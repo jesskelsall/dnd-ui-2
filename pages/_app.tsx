@@ -1,7 +1,7 @@
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import { ThemeProvider } from "styled-components";
-import { dark, GlobalStyles, socket, SocketContext } from "~/providers";
+import { dark, GlobalStyles, socket, SocketContext } from "../providers";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const router = useRouter();

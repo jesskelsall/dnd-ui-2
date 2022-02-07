@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
-import { disabledStyle, focusStyle } from "~/components/framework/common";
-import { getColor } from "~/functions";
-import { MaterialColour } from "~/types";
+import { disabledStyle, focusStyle } from "../../common";
+import { getColor } from "../../../../functions";
+import { MaterialColour } from "../../../../types";
 
 export interface IButtonProps {
   block?: boolean;

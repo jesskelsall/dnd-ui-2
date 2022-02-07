@@ -11,9 +11,9 @@ import {
   InputText,
   Screen,
   Slider,
-} from "~/components";
-import { Debug } from "~/components/Debug";
-import { FormNumber } from "~/types";
+} from "../components";
+import { Debug } from "../components/Debug";
+import { FormNumber } from "../types";
 
 interface Data {
   text: string;

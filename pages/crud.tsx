@@ -1,5 +1,5 @@
 import { NextPage } from "next";
-import { CRUD, Header, Screen } from "~/components";
+import { CRUD, Header, Screen } from "../components";
 
 interface DataRecord {
   id: string;

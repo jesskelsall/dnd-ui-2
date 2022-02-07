@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { themeDecorator } from "~/.storybook/decorators";
-import { MATERIAL_COLOURS } from "~/consts";
+import { themeDecorator } from "../../../../.storybook/decorators";
+import { MATERIAL_COLOURS } from "../../../../consts";
 import { Button } from "./Button";
 
 export default {

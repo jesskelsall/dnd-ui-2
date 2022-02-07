@@ -1,8 +1,8 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import _ from "lodash/fp";
-import { themeDecorator } from "~/.storybook/decorators";
-import { Button } from "~/components/framework/controls";
-import { InputNumber, InputText } from "~/components/framework/data";
+import { themeDecorator } from "../../../../.storybook/decorators";
+import { Button } from "../../controls";
+import { InputNumber, InputText } from "../../data";
 import { FormLabel } from "../FormLabel";
 import { FormRow } from "./FormRow";
 

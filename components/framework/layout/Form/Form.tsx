@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { getColor } from "~/functions";
+import { getColor } from "../../../../functions";
 
 export const FormHeader = styled.div`
   display: flex;

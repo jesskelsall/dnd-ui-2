@@ -1,5 +1,5 @@
 import { css } from "styled-components";
-import { getColor } from "~/functions";
+import { getColor } from "../../../functions";
 
 export const disabledStyle = css`
   opacity: 0.6;

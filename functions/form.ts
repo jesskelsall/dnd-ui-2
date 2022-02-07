@@ -1,6 +1,6 @@
 import _ from "lodash/fp";
 import { Dispatch, SetStateAction } from "react";
-import { OnChange } from "~/types";
+import { OnChange } from "../types";
 
 export const setFormData = <ValueType, DataType extends object>(
   value: ValueType,

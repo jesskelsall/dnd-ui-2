@@ -2,6 +2,7 @@ import express from "express";
 import http from "http";
 import next from "next";
 import { Server } from "socket.io";
+import { DataStore } from "./DataStore";
 
 const PORT = 3000;
 
@@ -22,34 +23,24 @@ io.on("connection", (socket) => {
 });
 
 nextApp.prepare().then(() => {
+  const ds = new DataStore();
+  console.log(JSON.stringify(ds.getData(), null, 2));
+
+  ds.mapSet({
+    id: "first",
+    name: "First Map",
+  });
+  console.log(JSON.stringify(ds.getData(), null, 2));
+
+  ds.mapDelete("first");
+  console.log(JSON.stringify(ds.getData(), null, 2));
+
   expressApp.get("*", (req, res) => nextHandler(req, res));
 
   server.listen(PORT, () => {
     console.info(`Listening on *:${PORT}`);
   });
 });
-
-interface One {
-  name: "one";
-  shape: number[];
-}
-
-interface Two {
-  name: "two";
-  shape: string;
-}
-
-type Numbers = One | Two;
-
-const handleNumbers = (n: Numbers): void => {
-  switch (n.name) {
-    case "one":
-      console.log(n.shape);
-      break;
-    default:
-      console.log("nope");
-  }
-};
 
 // per action:
 // - class method argument type (object if multiple properties are needed)

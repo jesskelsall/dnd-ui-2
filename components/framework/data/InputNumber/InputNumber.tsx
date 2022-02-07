@@ -1,6 +1,6 @@
 import _ from "lodash/fp";
-import { setFormData, tabIndex } from "~/functions";
-import { FormNumber } from "~/types";
+import { setFormData, tabIndex } from "../../../../functions";
+import { FormNumber } from "../../../../types";
 import { IInputProps, StyledInput } from "../InputText/InputText";
 
 export function InputNumber<DataType extends object>({
