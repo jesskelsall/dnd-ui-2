@@ -4,19 +4,15 @@ import {
   IActionMapViewDelete,
   IActionMapViewSet,
 } from "./mapScreen";
+import { IActionSyncApplyChanges, IActionSyncSetRealTime } from "./sync";
 
 export type TAction =
   | IActionMapDelete
   | IActionMapSet
   | IActionMapViewDelete
-  | IActionMapViewSet;
+  | IActionMapViewSet
+  | IActionSyncApplyChanges
+  | IActionSyncSetRealTime;
 
 export * from "./mapScreen";
-
-export interface IServerToClientEvents {
-  noArg: () => void;
-}
-
-export interface IClientToServerEvents {
-  hello: () => void;
-}
+export * from "./sync";

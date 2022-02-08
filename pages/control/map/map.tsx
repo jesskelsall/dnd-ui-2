@@ -1,5 +1,5 @@
 import { NextPage } from "next";
-import { CRUD, Header, Screen } from "../components";
+import { CRUD } from "../../../components";
 
 interface DataRecord {
   id: string;
@@ -35,38 +35,35 @@ const data: Record<string, DataRecord> = {
   },
 };
 
-const CrudPage: NextPage = () => {
+const MapPage: NextPage = () => {
   const sendCreate = (id: string, baseId?: string) =>
     console.log("sendCreate", { id, baseId });
   const sendDelete = (id: string) => console.log("sendDelete", { id });
 
   return (
-    <Screen>
-      <Header />
-      <CRUD<DataRecord>
-        columns={[
-          {
-            display: (record) => record.name,
-            title: "Name",
-          },
-          {
-            display: (record) => record.race,
-            title: "Race",
-          },
-          {
-            display: (record) => record.class,
-            title: "Class",
-          },
-        ]}
-        data={data}
-        linkBase="character"
-        sendCreate={sendCreate}
-        sendDelete={sendDelete}
-        sortBy={["name"]}
-        title="CRUD"
-      />
-    </Screen>
+    <CRUD<DataRecord>
+      columns={[
+        {
+          display: (record) => record.name,
+          title: "Name",
+        },
+        {
+          display: (record) => record.race,
+          title: "Race",
+        },
+        {
+          display: (record) => record.class,
+          title: "Class",
+        },
+      ]}
+      data={data}
+      linkBase="character"
+      sendCreate={sendCreate}
+      sendDelete={sendDelete}
+      sortBy={["name"]}
+      title="CRUD"
+    />
   );
 };
 
-export default CrudPage;
+export default MapPage;

@@ -2,7 +2,9 @@ import express from "express";
 import http from "http";
 import next from "next";
 import { Server } from "socket.io";
+import { SOCKET_EVENT_CHANGE } from "../../consts";
 import { DataStore } from "./DataStore";
+import { eventHandler } from "./eventHandler";
 
 const PORT = 3000;
 
@@ -14,56 +16,22 @@ const dev = process.env.NODE_ENV !== "production";
 const nextApp = next({ dev });
 const nextHandler = nextApp.getRequestHandler();
 
+const dataStore = new DataStore();
+
 io.on("connection", (socket) => {
-  // Every event created by every connection is replayed to all connections
-  // This allows every window to react to any change
-  socket.onAny((eventName, payload) => {
-    io.emit(eventName, payload);
-  });
+  console.info(`New socket connection made: ${socket.id}`);
+
+  // Provide the data store as soon as a connection is made
+  socket.emit(SOCKET_EVENT_CHANGE, dataStore.getData());
+
+  // Handle all incoming socket events
+  socket.onAny(eventHandler(io, dataStore));
 });
 
 nextApp.prepare().then(() => {
-  const ds = new DataStore();
-  console.log(JSON.stringify(ds.getData(), null, 2));
-
-  ds.mapSet({
-    id: "first",
-    name: "First Map",
-  });
-  console.log(JSON.stringify(ds.getData(), null, 2));
-
-  ds.mapDelete("first");
-  console.log(JSON.stringify(ds.getData(), null, 2));
-
   expressApp.get("*", (req, res) => nextHandler(req, res));
 
   server.listen(PORT, () => {
     console.info(`Listening on *:${PORT}`);
   });
 });
-
-// per action:
-// - class method argument type (object if multiple properties are needed)
-// - class method, typed with the above
-// - interface with _type (specific string) and params (use class method type)
-
-// for all actions:
-// - composite type of all the interfaces - this will be the socket payload
-// - socket handler function that handles each _type and runs the relevant action
-//   - must handle get request first
-//   - switch statement
-//   - default case should throw an error
-// - each action ends with the updated data object being emitted to all clients
-// - type safeguarding function for socket emit on the front end
-//   - pass in socket object and the payload object (_type, params)
-
-// listening to events:
-// - every page in Next.js will need access to the data object
-// - request it when the page is loaded
-// - listen for it when emitted to all socket connections
-// - should happen as part of the page template
-//   - object is passed down into each page component
-//   - does each page need TS type extension to allow this property to be set?
-
-// other:
-// - explore ways of having _app.tsx do different things on different routes

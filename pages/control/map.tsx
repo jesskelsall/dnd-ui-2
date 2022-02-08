@@ -1,7 +1,8 @@
 import type { NextPage } from "next";
 import { useContext, useState } from "react";
 import styled from "styled-components";
-import { SocketContext } from "../../providers/socket";
+import { updateDataStore } from "../../functions";
+import { useSocket } from "../../providers/socket";
 import { IMapView } from "../../types";
 
 const FullScreen = styled.div`
@@ -25,7 +26,7 @@ const Button = styled.button`
 const imageUrl = "http://localhost:3000/map-nilsavnic.jpg";
 
 const ControlMapPage: NextPage = () => {
-  const socket = useContext(SocketContext);
+  const socket = useSocket();
   const [url, setUrl] = useState(imageUrl);
   const [scale, setScale] = useState(20);
   const [horizontal, setHorizontal] = useState(50);
@@ -43,6 +44,19 @@ const ControlMapPage: NextPage = () => {
 
   return (
     <FullScreen>
+      <Button
+        onClick={() =>
+          updateDataStore(socket, {
+            action: "map-set",
+            payload: {
+              id: "firstFromSocket",
+              name: "First Map From Socket",
+            },
+          })
+        }
+      >
+        Create Map
+      </Button>
       <Button
         onClick={() =>
           updateMap({

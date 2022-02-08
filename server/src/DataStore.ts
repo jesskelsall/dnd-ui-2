@@ -36,19 +36,33 @@ export class DataStore {
 
   // Actions
 
-  public mapDelete = (payload: TMapId) => {
-    this.updateCopies(_.unset(`screens.map.maps.${payload}`));
+  public mapDelete = (mapId: TMapId) => {
+    this.updateCopies(_.unset(`screens.map.maps.${mapId}`));
   };
 
-  public mapSet = (payload: IMap) => {
-    this.updateCopies(_.set(`screens.map.maps.${payload.id}`, payload));
+  public mapSet = (map: IMap) => {
+    this.updateCopies(_.set(`screens.map.maps.${map.id}`, map));
   };
 
-  public mapViewDelete = (payload: TMapViewId) => {
-    this.updateCopies(_.unset(`screens.map.mapViews.${payload}`));
+  public mapViewDelete = (mapViewId: TMapViewId) => {
+    this.updateCopies(_.unset(`screens.map.mapViews.${mapViewId}`));
   };
 
-  public mapViewSet = (payload: IMapView) => {
-    this.updateCopies(_.set(`screens.map.mapViews.${payload.id}`, payload));
+  public mapViewSet = (mapView: IMapView) => {
+    this.updateCopies(_.set(`screens.map.mapViews.${mapView.id}`, mapView));
+  };
+
+  public syncApplyChanges = () => {
+    this.data = _.flow(
+      _.set("copies.display", this.data.copies.control),
+      _.set("sync.changes", false)
+    )(this.data);
+  };
+
+  public syncSetRealTime = (realTime: boolean) => {
+    this.data = _.flow(
+      _.set("sync.realTime", realTime),
+      realTime ? _.set("copies.display", this.data.copies.control) : _.identity
+    )(this.data);
   };
 }

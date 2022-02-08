@@ -1,9 +1,10 @@
 import type { NextPage } from "next";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { InteractiveMap } from "../../components/display/InteractiveMap/InteractiveMap";
-import { SocketContext } from "../../providers/socket";
-import { IMapView } from "../../types";
+import { SOCKET_EVENT_CHANGE } from "../../consts";
+import { useSocket } from "../../providers/socket";
+import { IDataStore, IMapView } from "../../types";
 
 const FullScreen = styled.div`
   height: 100vh;
@@ -20,7 +21,7 @@ const Target = styled.div`
 `;
 
 const DisplayMapPage: NextPage = () => {
-  const socket = useContext(SocketContext);
+  const socket = useSocket();
   const [mapView, setMapView] = useState<IMapView | null>(null);
 
   const onMapUpdated = (mapView: IMapView) => {
@@ -28,11 +29,15 @@ const DisplayMapPage: NextPage = () => {
     setMapView(mapView);
   };
 
+  const onPropagation = (data: IDataStore) => console.log(data);
+
   useEffect(() => {
+    socket.on(SOCKET_EVENT_CHANGE, onPropagation);
     socket.on("map", onMapUpdated);
 
     return () => {
       socket.off("map", onMapUpdated);
+      socket.off(SOCKET_EVENT_CHANGE, onPropagation);
     };
   }, []);
 
