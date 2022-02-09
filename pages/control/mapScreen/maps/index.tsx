@@ -5,7 +5,7 @@ import { updateDataStore } from "../../../../functions";
 import { useDataStore, useSocket } from "../../../../providers";
 import { IMap, TMapId } from "../../../../types";
 
-const MapPage: NextPage = () => {
+const MapsPage: NextPage = () => {
   const socket = useSocket();
   const dataStore = useDataStore();
 
@@ -34,10 +34,9 @@ const MapPage: NextPage = () => {
       data={dataStore.copies.control.screens.map.maps}
       sortBy={["name"]}
       recordTemplate={createMap}
-      routeBase="/control/map/map"
       title="Maps"
     />
   );
 };
 
-export default MapPage;
+export default MapsPage;

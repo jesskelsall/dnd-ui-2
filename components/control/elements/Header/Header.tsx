@@ -1,7 +1,9 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import styled from "styled-components";
 import { getColor, updateDataStore } from "../../../../functions";
 import { useDataStore, useSocket } from "../../../../providers";
+import { Breadcrumbs } from "../Breadcrumb";
 import { SyncButton } from "../SyncButton";
 
 export const StyledHeader = styled.header`
@@ -20,9 +22,14 @@ export const HeaderSide = styled.div`
 export const HeaderTitle = styled.a`
   color: ${getColor("heading")};
   font-size: 1.25rem;
+
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 export const Header = () => {
+  const router = useRouter();
   const socket = useSocket();
   const dataStore = useDataStore();
 
@@ -46,6 +53,7 @@ export const Header = () => {
         <Link href="/" passHref>
           <HeaderTitle>dnd-ui-2</HeaderTitle>
         </Link>
+        <Breadcrumbs route={router.route} />
       </HeaderSide>
       <HeaderSide>
         <SyncButton

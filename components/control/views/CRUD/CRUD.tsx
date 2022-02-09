@@ -38,7 +38,6 @@ export interface ICRUDProps<RecordType> {
   headerButtons?: React.ReactNode;
   recordTemplate: (records: Record<string, RecordType>) => RecordType;
   sortBy?: Many<ValueIteratee<unknown>>;
-  routeBase: string;
   title: string;
 }
 
@@ -49,7 +48,6 @@ export function CRUD<RecordType extends RecordWithId>({
   data,
   headerButtons,
   recordTemplate,
-  routeBase,
   sortBy = [],
   title,
 }: ICRUDProps<RecordType>) {
@@ -57,7 +55,7 @@ export function CRUD<RecordType extends RecordWithId>({
   const orderedData = _.sortBy(sortBy, data);
 
   const navigateToRecord = (recordId: string) =>
-    router.push(`${routeBase}/${recordId}`);
+    router.push(`${router.route}/${recordId}`);
 
   // CRUD functions
 
