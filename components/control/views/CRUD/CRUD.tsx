@@ -1,6 +1,5 @@
 import { Many, ValueIteratee } from "lodash";
 import _ from "lodash/fp";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import { randomId } from "../../../../functions";
@@ -18,6 +17,7 @@ import {
 } from "../../../framework";
 
 const ButtonCell = styled(TableHeaderCell)`
+  min-width: 15.225rem;
   width: 0;
 `;
 
@@ -25,41 +25,57 @@ export interface RecordWithId {
   id: string;
 }
 
-export interface IColumn<DataType> {
-  display: (data: DataType) => string;
+export interface IColumn<RecordType> {
+  display: (data: RecordType) => string;
   title: string;
 }
 
-export interface ICRUDProps<DataType> {
-  columns: IColumn<DataType>[];
-  data: Record<string, DataType>;
+export interface ICRUDProps<RecordType> {
+  actionDelete: (id: string) => void;
+  actionSet: (record: RecordType) => void;
+  columns: IColumn<RecordType>[];
+  data: Record<string, RecordType>;
   headerButtons?: React.ReactNode;
-  linkBase: string;
-  sendCreate: (id: string, baseId?: string) => void;
-  sendDelete: (id: string) => void;
+  recordTemplate: (records: Record<string, RecordType>) => RecordType;
   sortBy?: Many<ValueIteratee<unknown>>;
+  routeBase: string;
   title: string;
 }
 
-export function CRUD<DataType extends RecordWithId>({
+export function CRUD<RecordType extends RecordWithId>({
+  actionDelete,
+  actionSet,
   columns,
   data,
   headerButtons,
-  linkBase,
-  sendCreate,
-  sendDelete,
+  recordTemplate,
+  routeBase,
   sortBy = [],
   title,
-}: ICRUDProps<DataType>) {
+}: ICRUDProps<RecordType>) {
   const router = useRouter();
   const orderedData = _.sortBy(sortBy, data);
 
-  const onCreate = (baseId?: string) => () => {
-    const createdId = randomId(data);
+  const navigateToRecord = (recordId: string) =>
+    router.push(`${routeBase}/${recordId}`);
 
-    sendCreate(createdId, baseId);
-    router.push(`${linkBase}/${createdId}`);
+  // CRUD functions
+
+  const onChange = (recordId: string) => () => navigateToRecord(recordId);
+
+  const onCopy = (record: RecordType) => () => {
+    const newRecord = _.set("id", randomId(data), record);
+    actionSet(newRecord);
+    navigateToRecord(newRecord.id);
   };
+
+  const onCreate = () => {
+    const newRecord = recordTemplate(data);
+    actionSet(newRecord);
+    navigateToRecord(newRecord.id);
+  };
+
+  const onDelete = (recordId: string) => () => actionDelete(recordId);
 
   return (
     <Form buttons={headerButtons} title={title}>
@@ -72,7 +88,7 @@ export function CRUD<DataType extends RecordWithId>({
               </TableHeaderCell>
             ))}
             <ButtonCell>
-              <Button block colour="green" onClick={onCreate()}>
+              <Button block colour="green" onClick={onCreate}>
                 Create New
               </Button>
             </ButtonCell>
@@ -88,11 +104,9 @@ export function CRUD<DataType extends RecordWithId>({
               ))}
               <TableCell>
                 <ButtonGroup>
-                  <Link href={`${linkBase}/${record.id}`} passHref>
-                    <Button>Change</Button>
-                  </Link>
-                  <Button onClick={onCreate(record.id)}>Copy</Button>
-                  <Button colour="red" onClick={() => sendDelete(record.id)}>
+                  <Button onClick={onChange(record.id)}>Change</Button>
+                  <Button onClick={onCopy(record)}>Copy</Button>
+                  <Button colour="red" onClick={onDelete(record.id)}>
                     Delete
                   </Button>
                 </ButtonGroup>

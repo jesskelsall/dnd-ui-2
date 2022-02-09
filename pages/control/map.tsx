@@ -57,7 +57,7 @@ const ControlMapPage: NextPage = () => {
       >
         Create Map
       </Button>
-      <Button
+      {/* <Button
         onClick={() =>
           updateMap({
             imageUrl,
@@ -127,7 +127,7 @@ const ControlMapPage: NextPage = () => {
         }
       >
         Go!
-      </Button>
+      </Button> */}
     </FullScreen>
   );
 };
