@@ -2,11 +2,9 @@ import express from "express";
 import http from "http";
 import next from "next";
 import { Server } from "socket.io";
-import { SOCKET_EVENT_CHANGE } from "../../consts";
+import { PORT, SOCKET_EVENT_CHANGE } from "../../consts";
 import { DataStore } from "./DataStore";
 import { eventHandler } from "./eventHandler";
-
-const PORT = 3000;
 
 const expressApp = express();
 const server = http.createServer(expressApp);

@@ -1,6 +1,6 @@
 import _ from "lodash/fp";
 import { ChangeEvent, Dispatch, SetStateAction } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { getColor, setFormData, tabIndex } from "../../../../functions";
 import { FormNumber, MaterialColour, OnChange } from "../../../../types";
 import { disabledStyle, focusStyle } from "../../common";
@@ -14,9 +14,7 @@ export const SliderContainer = styled.div`
   height: 2rem;
 `;
 
-export const Input = styled(StyledInput).attrs({
-  type: "number",
-})`
+export const Input = styled(StyledInput)`
   flex-basis: 8rem;
   flex-shrink: 0;
   margin-right: 1rem;
@@ -27,30 +25,26 @@ export interface IRangeProps {
   disabled?: boolean;
 }
 
-export const Range = styled.input.attrs({
-  type: "range",
-})(
-  (props: IRangeProps) => css`
-    width: 100%;
-    height: 1px;
-    background-color: ${getColor("border")};
-    appearance: none;
+export const Range = styled.input<IRangeProps>`
+  width: 100%;
+  height: 1px;
+  background-color: ${getColor("border")};
+  appearance: none;
 
-    ${focusStyle}
-    ${props.disabled && disabledStyle}
+  ${focusStyle}
+  ${(props) => props.disabled && disabledStyle}
 
     &::-moz-range-thumb,
     &::-webkit-slider-thumb {
-      width: 1rem;
-      height: 1rem;
-      border: none;
-      border-radius: 50%;
-      background-color: ${getColor(props.colour)};
-      appearance: none;
-      cursor: pointer;
-    }
-  `
-);
+    width: 1rem;
+    height: 1rem;
+    border: none;
+    border-radius: 50%;
+    background-color: ${(props) => getColor(props.colour)};
+    appearance: none;
+    cursor: pointer;
+  }
+`;
 
 export interface ISliderProps<DataType extends object> {
   colour?: MaterialColour;
@@ -113,6 +107,7 @@ export function Slider<DataType extends object>({
             );
           }}
           tabIndex={tabIndex(skipTab)}
+          type="number"
           value={inputValue}
         />
       )}
@@ -123,6 +118,7 @@ export function Slider<DataType extends object>({
         min={sliderMin}
         onChange={onChangeRange}
         tabIndex={tabIndex(skipTab || numberInput)}
+        type="range"
         value={sliderValue}
       />
     </SliderContainer>

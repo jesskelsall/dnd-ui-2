@@ -7,12 +7,4 @@ module.exports = {
   core: {
     builder: "webpack5",
   },
-  webpackFinal: async (config, { configType }) => {
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      "~": path.resolve(__dirname, "..")
-    }
-
-    return config;
-  }
 };

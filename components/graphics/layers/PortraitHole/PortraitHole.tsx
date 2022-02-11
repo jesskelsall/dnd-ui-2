@@ -10,20 +10,20 @@ export interface IStyledPortraitHoleProps {
   showOverflow: boolean;
 }
 
-export const StyledPortraitHole = styled.svg(
-  (props: IStyledPortraitHoleProps) => css`
-    background-image: url("${props.imageUrl}");
-    background-repeat: no-repeat;
-    background-size: ${props.scale}%;
-    background-position: ${props.positionHorizontal}% ${props.positionVertical}%;
-    clip-path: url(#${props.clipPathId});
+export const StyledPortraitHole = styled.svg<IStyledPortraitHoleProps>`
+  background-image: url("${(props) => props.imageUrl}");
+  background-repeat: no-repeat;
+  background-size: ${(props) => props.scale}%;
+  background-position: ${(props) => props.positionHorizontal}%
+    ${(props) => props.positionVertical}%;
+  clip-path: url(#${(props) => props.clipPathId});
 
-    ${props.showOverflow &&
+  ${(props) =>
+    props.showOverflow &&
     css`
       background-color: rgba(100, 150, 200, 0.5);
     `}
-  `
-);
+`;
 
 export interface IPortraitHoleProps {
   circleRadius: number;

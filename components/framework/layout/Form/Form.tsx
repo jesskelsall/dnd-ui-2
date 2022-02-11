@@ -21,6 +21,8 @@ export const FormButtons = styled.div`
 `;
 
 export const FormContent = styled.div`
+  display: flex;
+  flex-direction: column;
   overflow-y: scroll;
   flex: 1;
 `;

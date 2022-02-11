@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import styled from "styled-components";
+import { APP_NAME } from "../../../../consts";
 import { getColor, updateDataStore } from "../../../../functions";
 import { useDataStore, useSocket } from "../../../../providers";
 import { Breadcrumbs } from "../Breadcrumb";
@@ -31,7 +32,7 @@ export const HeaderTitle = styled.a`
 export const Header = () => {
   const router = useRouter();
   const socket = useSocket();
-  const dataStore = useDataStore();
+  const { dataStore } = useDataStore();
 
   const applyChanges = () => {
     updateDataStore(socket, {
@@ -51,7 +52,7 @@ export const Header = () => {
     <StyledHeader>
       <HeaderSide>
         <Link href="/" passHref>
-          <HeaderTitle>dnd-ui-2</HeaderTitle>
+          <HeaderTitle>{APP_NAME}</HeaderTitle>
         </Link>
         <Breadcrumbs route={router.route} />
       </HeaderSide>

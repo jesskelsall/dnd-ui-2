@@ -14,7 +14,6 @@ module.exports = {
     "import/extensions": "off",
     "import/named": "off",
     "import/no-extraneous-dependencies": ["error", { devDependencies: true }],
-    "import/no-unresolved": ["error", { ignore: ["^~/"] }],
     "import/prefer-default-export": "off",
     "no-console": ["warn", { allow: ["error", "info", "warn"] }],
     "prettier/prettier": "error",

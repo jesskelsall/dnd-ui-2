@@ -12,7 +12,7 @@ export interface IButtonProps {
   wide?: boolean;
 }
 
-export const Button = styled.a((props: IButtonProps) => {
+export const Button = styled.a<IButtonProps>((props) => {
   const colour = getColor(props.colour || "grey");
 
   return css`

@@ -10,63 +10,61 @@ export interface ISelectProps {
   placeholderSelected: boolean;
 }
 
-export const Select = styled.select(
-  (props: ISelectProps) => css`
-    width: 100%;
-    font-size: 1rem;
-    padding: 0.5rem 1rem;
-    border-radius: 100px;
-    border: 1px solid ${getColor("border")};
-    background-color: transparent;
-    color: ${getColor("text")};
-    appearance: none;
+export const Select = styled.select<ISelectProps>`
+  width: 100%;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 100px;
+  border: 1px solid ${getColor("border")};
+  background-color: transparent;
+  color: ${getColor("text")};
+  appearance: none;
 
-    ${focusStyle}
-    ${props.disabled && disabledStyle}
+  ${focusStyle}
+  ${(props) => props.disabled && disabledStyle}
 
-    ${props.placeholderSelected &&
+    ${(props) =>
+    props.placeholderSelected &&
     css`
       color: ${getColor("text")}99;
       font-style: italic;
     `}
 
     > option {
-      color: initial;
+    color: initial;
 
-      &[disabled] {
-        color: grey;
-      }
+    &[disabled] {
+      color: grey;
     }
-  `
-);
+  }
+`;
 
 export interface ISelectWrapperProps {
   disabled?: boolean;
 }
 
-export const SelectWrapper = styled.div(
-  (props: ISelectWrapperProps) => css`
-    position: relative;
+export const SelectWrapper = styled.div<ISelectWrapperProps>`
+  position: relative;
 
-    &::after {
-      content: "";
-      position: absolute;
-      right: 1rem;
-      top: 0.9rem;
-      width: 0;
-      height: 0;
-      border-top: 0.5rem solid ${getColor("border")};
-      border-left: 0.5rem solid transparent;
-      border-right: 0.5rem solid transparent;
-      border-bottom: 0;
+  &::after {
+    content: "";
+    position: absolute;
+    right: 1rem;
+    top: 0.9rem;
+    width: 0;
+    height: 0;
+    border-top: 0.5rem solid ${getColor("border")};
+    border-left: 0.5rem solid transparent;
+    border-right: 0.5rem solid transparent;
+    border-bottom: 0;
 
-      ${props.disabled &&
+    ${(props) =>
+      props.disabled &&
       css`
         opacity: 0.6;
       `}
-    }
-  `
-);
+  }
+`;
 
 export interface IDropdownProps<
   DataType extends object,

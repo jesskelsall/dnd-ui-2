@@ -1,6 +1,6 @@
 import _ from "lodash/fp";
 import { Dispatch, SetStateAction } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { getColor, setFormData, tabIndex } from "../../../../functions";
 import { OnChange } from "../../../../types";
 import { disabledStyle, focusStyle } from "../../common";
@@ -9,26 +9,24 @@ export interface IStyledInputProps {
   disabled?: boolean;
 }
 
-export const StyledInput = styled.input(
-  (props: IStyledInputProps) => css`
-    width: 100%;
-    font-size: 1rem;
-    padding: 0.5rem 1rem;
-    border-radius: 100px;
-    border: 1px solid ${getColor("border")};
-    background-color: transparent;
-    color: ${getColor("text")};
+export const StyledInput = styled.input<IStyledInputProps>`
+  width: 100%;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 100px;
+  border: 1px solid ${getColor("border")};
+  background-color: transparent;
+  color: ${getColor("text")};
 
-    ${focusStyle}
-    ${props.disabled && disabledStyle}
+  ${focusStyle}
+  ${(props) => props.disabled && disabledStyle}
 
     &::placeholder {
-      opacity: 100%;
-      color: ${getColor("border")};
-      font-style: italic;
-    }
-  `
-);
+    opacity: 100%;
+    color: ${getColor("border")};
+    font-style: italic;
+  }
+`;
 
 export interface IInputProps<InputType, DataType extends object> {
   data: DataType;

@@ -15,6 +15,7 @@ export const MAP_VIEW_DISPLAY_TEMPLATE: IMapViewDisplay = {
 };
 
 export const createMap = (maps: Record<TMapId, IMap>): IMap => ({
+  fileName: "",
   id: randomId(maps),
   name: "",
 });

@@ -7,7 +7,7 @@ import { IMap, TMapId } from "../../../../types";
 
 const MapsPage: NextPage = () => {
   const socket = useSocket();
-  const dataStore = useDataStore();
+  const { dataStore } = useDataStore();
 
   const deleteMap = (mapId: TMapId) =>
     updateDataStore(socket, {

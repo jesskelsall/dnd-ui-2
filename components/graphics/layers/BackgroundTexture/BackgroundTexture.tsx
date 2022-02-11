@@ -18,8 +18,8 @@ export interface IBackgroundTextureProps {
   unit?: string;
 }
 
-export const BackgroundTexture = styled.svg(
-  (props: IBackgroundTextureProps) => {
+export const BackgroundTexture = styled.svg<IBackgroundTextureProps>(
+  (props) => {
     const keyframeId = nanoid();
     const unit = props.unit || "%";
 

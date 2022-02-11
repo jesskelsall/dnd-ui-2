@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 export interface IStyledInteractiveMapProps {
   imageUrl: string;
@@ -7,18 +7,17 @@ export interface IStyledInteractiveMapProps {
   positionVertical: number;
 }
 
-export const StyledInteractiveMap = styled.div(
-  (props: IStyledInteractiveMapProps) => css`
-    width: 100%;
-    height: 100%;
-    background-color: #000;
-    background-image: url("${props.imageUrl}");
-    background-repeat: no-repeat;
-    background-size: ${props.scale}%;
-    background-position: ${props.positionHorizontal}% ${props.positionVertical}%;
-    transition: background-size 3s ease, background-position 1.5s ease-out;
-  `
-);
+export const StyledInteractiveMap = styled.div<IStyledInteractiveMapProps>`
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  background-image: url("${(props) => props.imageUrl}");
+  background-repeat: no-repeat;
+  background-size: ${(props) => props.scale}%;
+  background-position: ${(props) => props.positionHorizontal}%
+    ${(props) => props.positionVertical}%;
+  transition: background-size 3s ease, background-position 1.5s ease-out;
+`;
 
 export type IInteractiveMapProps = IStyledInteractiveMapProps;
 

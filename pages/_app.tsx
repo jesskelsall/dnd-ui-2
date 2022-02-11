@@ -2,7 +2,7 @@ import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import React from "react";
 import { ThemeProvider } from "styled-components";
-import { ControlLayout, DefaultLayout } from "../components";
+import { ControlLayout, DefaultLayout, EditorLayout } from "../components";
 import {
   dark,
   DataStoreProvider,
@@ -10,20 +10,25 @@ import {
   socket,
   SocketContext,
 } from "../providers";
+import { IPage } from "../types";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const router = useRouter();
 
-  // Apply layout based on the page route
-  let Layout = DefaultLayout;
-  if (router.route.startsWith("/control/")) Layout = ControlLayout;
+  const { collectionSelector } = Component as IPage;
+
+  // Apply layout based on the page route and properties
+  let Layout: typeof DefaultLayout | typeof EditorLayout = DefaultLayout;
+  if (router.route.startsWith("/control")) {
+    Layout = collectionSelector ? EditorLayout : ControlLayout;
+  }
 
   return (
     <SocketContext.Provider value={socket}>
       <DataStoreProvider>
         <ThemeProvider theme={dark}>
           <GlobalStyles />
-          <Layout>
+          <Layout collectionSelector={collectionSelector}>
             <Component {...pageProps} />
           </Layout>
         </ThemeProvider>

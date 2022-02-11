@@ -1,20 +1,21 @@
 import React from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { getColor } from "../../../../functions";
 
-const spacing = css`
-  &:not(:last-child) {
-    margin-bottom: 1rem;
-  }
-`;
+export interface IStyledFormGroupProps {
+  flex?: boolean;
+}
 
-export const StyledFormGroup = styled.div`
+export const StyledFormGroup = styled.div<IStyledFormGroupProps>`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  padding: 0 1rem;
+  ${(props) => props.flex && "flex: 1;"}
+  padding: 1rem;
 
-  ${spacing}
+  &:not(:last-child) {
+    margin-bottom: 1rem;
+  }
 `;
 
 export const FormGroupTitle = styled.h2`
@@ -27,18 +28,17 @@ export const FormGroupTitle = styled.h2`
   font-size: 1.5rem;
   font-weight: normal;
   color: ${getColor("heading")};
-
-  ${spacing}
 `;
 
 export interface IFormGroupProps {
   children?: React.ReactNode;
+  flex?: boolean;
   title?: string;
 }
 
-export const FormGroup = ({ children, title }: IFormGroupProps) => (
+export const FormGroup = ({ children, flex, title }: IFormGroupProps) => (
   <>
     {title && <FormGroupTitle>{title}</FormGroupTitle>}
-    <StyledFormGroup>{children}</StyledFormGroup>
+    <StyledFormGroup flex={flex}>{children}</StyledFormGroup>
   </>
 );
