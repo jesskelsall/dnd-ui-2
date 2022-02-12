@@ -1,4 +1,17 @@
-import { IMap, IMapView, TMapId, TMapViewId } from "../DataStore";
+import {
+  IMap,
+  IMapView,
+  IMapViewDisplay,
+  TMapId,
+  TMapViewId,
+} from "../DataStore";
+
+// Map Screen
+
+export interface IActionMapScreenApply {
+  action: "mapscreen-apply";
+  payload: IMapViewDisplay;
+}
 
 // Map
 

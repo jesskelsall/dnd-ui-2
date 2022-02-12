@@ -15,6 +15,9 @@ const handleAction = (dataStore: DataStore, event: TAction): void => {
     case "map-set":
       dataStore.mapSet(event.payload);
       break;
+    case "mapscreen-apply":
+      dataStore.mapScreenApply(event.payload);
+      break;
     case "mapview-delete":
       dataStore.mapViewDelete(event.payload);
       break;
@@ -28,7 +31,8 @@ const handleAction = (dataStore: DataStore, event: TAction): void => {
       dataStore.syncSetRealTime(event.payload);
       break;
     default:
-      throw new Error(`Unknown action requested: ${(event as TAction).action}`);
+      // @ts-expect-error Disallowed action strings need handling
+      throw new Error(`Unknown action requested: ${event.action}`);
   }
 };
 

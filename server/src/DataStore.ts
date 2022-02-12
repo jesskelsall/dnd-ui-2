@@ -5,6 +5,7 @@ import {
   IDataStore,
   IMap,
   IMapView,
+  IMapViewDisplay,
   TMapId,
   TMapViewId,
 } from "../../types";
@@ -38,6 +39,10 @@ export class DataStore {
 
   public mapDelete = (mapId: TMapId) => {
     this.updateCopies(_.unset(`screens.map.maps.${mapId}`));
+  };
+
+  public mapScreenApply = (mapDetails: IMapViewDisplay) => {
+    this.updateCopies(_.set("screens.map.display", mapDetails));
   };
 
   public mapSet = (map: IMap) => {

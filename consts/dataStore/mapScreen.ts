@@ -23,6 +23,7 @@ export const createMap = (maps: Record<TMapId, IMap>): IMap => ({
 export const createMapView = (
   mapViews: Record<TMapViewId, IMapView>
 ): IMapView => ({
+  colour: "grey",
   id: randomId(mapViews),
   name: "",
   ...MAP_VIEW_DISPLAY_TEMPLATE,

@@ -17,6 +17,7 @@ export const Button = styled.a<IButtonProps>((props) => {
 
   return css`
     display: inline-block;
+    flex-shrink: 0;
     padding: 0.5rem 1rem;
     border: 1px solid ${colour};
     border-radius: 100px;

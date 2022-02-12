@@ -1,3 +1,4 @@
+import { TMaterialColour } from "../../../ThemeColour";
 import { IDataRecord } from "../../DataRecord";
 import { TMapId } from "./Map";
 
@@ -10,4 +11,7 @@ export interface IMapViewDisplay {
   positionVertical: number;
 }
 
-export type IMapView = IDataRecord & IMapViewDisplay;
+export type IMapView = IDataRecord &
+  IMapViewDisplay & {
+    colour: TMaterialColour;
+  };

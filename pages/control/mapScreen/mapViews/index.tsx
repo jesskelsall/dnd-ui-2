@@ -1,4 +1,3 @@
-import _ from "lodash/fp";
 import { NextPage } from "next";
 import { CRUD } from "../../../../components";
 import { createMapView } from "../../../../consts";

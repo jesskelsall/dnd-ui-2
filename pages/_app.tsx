@@ -2,7 +2,12 @@ import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import React from "react";
 import { ThemeProvider } from "styled-components";
-import { ControlLayout, DefaultLayout, EditorLayout } from "../components";
+import {
+  ControlLayout,
+  DefaultLayout,
+  DisplayLayout,
+  EditorLayout,
+} from "../components";
 import {
   dark,
   DataStoreProvider,
@@ -21,6 +26,8 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   let Layout: typeof DefaultLayout | typeof EditorLayout = DefaultLayout;
   if (router.route.startsWith("/control")) {
     Layout = collectionSelector ? EditorLayout : ControlLayout;
+  } else if (router.route.startsWith("/display")) {
+    Layout = DisplayLayout;
   }
 
   return (

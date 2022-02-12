@@ -1,18 +1,26 @@
+import _ from "lodash/fp";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { ORDERED_COLOURS } from "..";
 import {
-  Button,
+  Dropdown,
   EditorForm,
   ForeignKeyDropdown,
   FormGroup,
   FormLabel,
   FormRow,
   InputText,
+  MapViewButton,
   Slider,
 } from "../../../../components";
 import { updateDataStore } from "../../../../functions";
 import { useDataStore, useSocket } from "../../../../providers";
-import { IMapView, IPage } from "../../../../types";
+import { IMapView, IOption, IPage } from "../../../../types";
+
+const COLOUR_OPTIONS: IOption<string>[] = ORDERED_COLOURS.map((colour) => ({
+  label: _.startCase(colour),
+  value: colour,
+}));
 
 const MapViewPage: IPage = () => {
   const router = useRouter();
@@ -53,6 +61,20 @@ const MapViewPage: IPage = () => {
             setter={setMapView}
           />
         </FormRow>
+        <FormRow>
+          <FormLabel>Colour</FormLabel>
+          <Dropdown
+            data={mapView}
+            options={COLOUR_OPTIONS}
+            path="colour"
+            setter={setMapView}
+          />
+          <MapViewButton
+            dataStore={dataStore}
+            mapView={mapView}
+            socket={socket}
+          />
+        </FormRow>
       </FormGroup>
       <FormGroup title="Position">
         <FormRow>
@@ -87,12 +109,6 @@ const MapViewPage: IPage = () => {
             setter={setMapView}
             step={5}
           />
-        </FormRow>
-        <FormRow>
-          <FormLabel />
-          <Button colour="blue" wide>
-            Apply Now
-          </Button>
         </FormRow>
       </FormGroup>
     </EditorForm>

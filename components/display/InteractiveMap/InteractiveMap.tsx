@@ -10,7 +10,6 @@ export interface IStyledInteractiveMapProps {
 export const StyledInteractiveMap = styled.div<IStyledInteractiveMapProps>`
   width: 100%;
   height: 100%;
-  background-color: #000;
   background-image: url("${(props) => props.imageUrl}");
   background-repeat: no-repeat;
   background-size: ${(props) => props.scale}%;

@@ -1,5 +1,6 @@
 import {
   IActionMapDelete,
+  IActionMapScreenApply,
   IActionMapSet,
   IActionMapViewDelete,
   IActionMapViewSet,
@@ -8,6 +9,7 @@ import { IActionSyncApplyChanges, IActionSyncSetRealTime } from "./sync";
 
 export type TAction =
   | IActionMapDelete
+  | IActionMapScreenApply
   | IActionMapSet
   | IActionMapViewDelete
   | IActionMapViewSet

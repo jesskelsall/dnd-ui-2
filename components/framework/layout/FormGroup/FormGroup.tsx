@@ -12,10 +12,6 @@ export const StyledFormGroup = styled.div<IStyledFormGroupProps>`
   gap: 1rem;
   ${(props) => props.flex && "flex: 1;"}
   padding: 1rem;
-
-  &:not(:last-child) {
-    margin-bottom: 1rem;
-  }
 `;
 
 export const FormGroupTitle = styled.h2`
