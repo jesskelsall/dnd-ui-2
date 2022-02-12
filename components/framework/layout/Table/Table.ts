@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { getColor } from "../../../../functions";
+import { getColour } from "../../../../functions";
 
 export const Table = styled.table`
   width: 100%;
@@ -16,7 +16,7 @@ export const TableRow = styled.tr``;
 export const TableCell = styled.td`
   margin: 0;
   padding: 1rem;
-  border-bottom: 1px solid ${getColor("border")};
+  border-bottom: 1px solid ${getColour("border")};
   outline: none;
 `;
 
@@ -25,7 +25,7 @@ export const TableCell = styled.td`
 export const TableHead = styled.thead`
   position: sticky;
   top: 0;
-  background-color: ${getColor("banner3")};
+  background-color: ${getColour("banner3")};
 `;
 
 export const TableHeaderRow = styled(TableRow)``;
@@ -33,5 +33,5 @@ export const TableHeaderRow = styled(TableRow)``;
 export const TableHeaderCell = styled(TableCell)`
   border-bottom: none;
   font-weight: bold;
-  color: ${getColor("heading")};
+  color: ${getColour("heading")};
 `;

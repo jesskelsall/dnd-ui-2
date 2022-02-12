@@ -1,11 +1,11 @@
 import styled, { css } from "styled-components";
+import { getColour } from "../../../../functions";
+import { TMaterialColour } from "../../../../types";
 import { disabledStyle, focusStyle } from "../../common";
-import { getColor } from "../../../../functions";
-import { MaterialColour } from "../../../../types";
 
 export interface IButtonProps {
   block?: boolean;
-  colour?: MaterialColour;
+  colour?: TMaterialColour;
   disabled?: boolean;
   fake?: boolean;
   outline?: boolean;
@@ -13,7 +13,7 @@ export interface IButtonProps {
 }
 
 export const Button = styled.a<IButtonProps>((props) => {
-  const colour = getColor(props.colour || "grey");
+  const colour = getColour(props.colour || "grey");
 
   return css`
     display: inline-block;
@@ -23,7 +23,7 @@ export const Button = styled.a<IButtonProps>((props) => {
     background-color: ${colour};
     font-size: 1rem;
     font-weight: normal;
-    color: ${getColor("action")};
+    color: ${getColour("action")};
     text-align: center;
     transition: all 0.1s linear;
 

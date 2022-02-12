@@ -1,12 +1,12 @@
 import _ from "lodash/fp";
 import { Dispatch, SetStateAction } from "react";
 import styled from "styled-components";
-import { getColor, setFormData, tabIndex } from "../../../../functions";
-import { MaterialColour, OnChange } from "../../../../types";
+import { getColour, setFormData, tabIndex } from "../../../../functions";
+import { OnChange, TMaterialColour } from "../../../../types";
 import { disabledStyle, focusStyle } from "../../common";
 
 export interface IStyledCheckboxProps {
-  colour: MaterialColour;
+  colour: TMaterialColour;
   disabled?: boolean;
 }
 
@@ -14,7 +14,7 @@ export const StyledCheckbox = styled.input<IStyledCheckboxProps>`
   width: 2rem;
   height: 2rem;
   margin: 0;
-  border: 1px solid ${getColor("border")};
+  border: 1px solid ${getColour("border")};
   border-radius: 100px;
   background-repeat: no-repeat;
   background-position: center;
@@ -29,7 +29,7 @@ export const StyledCheckbox = styled.input<IStyledCheckboxProps>`
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='${(
       props
     ) =>
-      props.theme.colors.background.replace(
+      props.theme.colours.background.replace(
         "#",
         "%23"
       )}' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10l3 3l6-6'/%3e%3c/svg%3e");
@@ -44,7 +44,7 @@ export const StyledCheckbox = styled.input<IStyledCheckboxProps>`
 `;
 
 export interface ICheckboxProps<DataType extends object> {
-  colour?: MaterialColour;
+  colour?: TMaterialColour;
   data: DataType;
   disabled?: boolean;
   onChange?: OnChange<boolean>;

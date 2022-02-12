@@ -1,14 +1,14 @@
 import { createGlobalStyle, IDefaultTheme } from "styled-components";
-import { getColor } from "../functions";
+import { getColour } from "../functions";
 
 export const GlobalStyles = createGlobalStyle`
   html, body {
     margin: 0;
     padding: 0;
-    background-color: ${getColor("background")};
+    background-color: ${getColour("background")};
     font-family: Helvetica Neue, Arial, sans-serif;
     font-size: 16px;
-    color: ${getColor("text")}
+    color: ${getColour("text")}
   }
 
   a {
@@ -18,7 +18,7 @@ export const GlobalStyles = createGlobalStyle`
 `;
 
 export const dark: IDefaultTheme = {
-  colors: {
+  colours: {
     action: "#F5F5F5", // Grey 100
     background: "#212121", // Grey 900
     banner1: "#757575", // Grey 600

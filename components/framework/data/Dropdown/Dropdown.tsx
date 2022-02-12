@@ -1,7 +1,7 @@
 import _ from "lodash/fp";
 import { Dispatch, SetStateAction } from "react";
 import styled, { css } from "styled-components";
-import { getColor, setFormData, tabIndex } from "../../../../functions";
+import { getColour, setFormData, tabIndex } from "../../../../functions";
 import { IOption, OnChange, TOptionValue } from "../../../../types";
 import { disabledStyle, focusStyle } from "../../common";
 
@@ -15,9 +15,9 @@ export const Select = styled.select<ISelectProps>`
   font-size: 1rem;
   padding: 0.5rem 1rem;
   border-radius: 100px;
-  border: 1px solid ${getColor("border")};
+  border: 1px solid ${getColour("border")};
   background-color: transparent;
-  color: ${getColor("text")};
+  color: ${getColour("text")};
   appearance: none;
 
   ${focusStyle}
@@ -26,7 +26,7 @@ export const Select = styled.select<ISelectProps>`
     ${(props) =>
     props.placeholderSelected &&
     css`
-      color: ${getColor("text")}99;
+      color: ${getColour("text")}99;
       font-style: italic;
     `}
 
@@ -45,6 +45,7 @@ export interface ISelectWrapperProps {
 
 export const SelectWrapper = styled.div<ISelectWrapperProps>`
   position: relative;
+  width: 100%;
 
   &::after {
     content: "";
@@ -53,7 +54,7 @@ export const SelectWrapper = styled.div<ISelectWrapperProps>`
     top: 0.9rem;
     width: 0;
     height: 0;
-    border-top: 0.5rem solid ${getColor("border")};
+    border-top: 0.5rem solid ${getColour("border")};
     border-left: 0.5rem solid transparent;
     border-right: 0.5rem solid transparent;
     border-bottom: 0;
@@ -98,6 +99,10 @@ export function Dropdown<
 
   const value = _.get(path, data) as ValueType;
   const hasNoValue = value === "" || value === null;
+  const valueIsOption =
+    !hasNoValue && options.some((option) => option.value === value);
+
+  const hasDefaultValue = (placeholder && hasNoValue) || !valueIsOption;
 
   const noNull = (optionValue: TOptionValue) =>
     optionValue === null ? "" : optionValue;
@@ -123,14 +128,20 @@ export function Dropdown<
       <Select
         disabled={disabled}
         onChange={onChangeSelect}
-        placeholderSelected={Boolean(placeholder && hasNoValue)}
+        placeholderSelected={hasDefaultValue}
         tabIndex={tabIndex(skipTab)}
         value={noNull(value)}
       >
-        {placeholder && (
+        {placeholder && hasNoValue ? (
           <option disabled key="placeholder" value="">
             {placeholder}
           </option>
+        ) : (
+          !valueIsOption && (
+            <option disabled key="unknown" value={noNull(value)}>
+              &quot;{value}&quot;
+            </option>
+          )
         )}
         {options.map((option) => (
           <option key={option.value} value={noNull(option.value)}>

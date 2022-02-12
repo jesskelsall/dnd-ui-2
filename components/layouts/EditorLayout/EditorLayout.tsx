@@ -4,6 +4,7 @@ import { NoContent } from "../../framework";
 import { useDataStore } from "../../../providers";
 import { TCollectionSelector } from "../../../types";
 import { ControlLayout } from "../ControlLayout";
+import { getRecordById } from "../../../functions";
 
 export interface IEditorLayoutProps {
   children: React.ReactNode;
@@ -37,7 +38,7 @@ export const EditorLayout = ({
   }
 
   const collection = collectionSelector(dataStore.copies.control);
-  const record = collection[`${recordId}`];
+  const record = getRecordById(collection, recordId);
 
   return <ControlLayout>{record ? children : noContent}</ControlLayout>;
 };

@@ -1,9 +1,9 @@
 import { NextPage } from "next";
-import { IDataCopy } from "./DataStore";
+import { IDataCopy, IDataRecord } from "./DataStore";
 
 export type TCollectionSelector = (
   dataCopy: IDataCopy
-) => Record<string, unknown>;
+) => Record<string, IDataRecord>;
 
 export type IPage = NextPage & {
   collectionSelector?: TCollectionSelector;

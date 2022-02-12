@@ -1,5 +1,5 @@
 import { css } from "styled-components";
-import { getColor } from "../../../functions";
+import { getColour } from "../../../functions";
 
 export const disabledStyle = css`
   opacity: 0.6;
@@ -8,7 +8,7 @@ export const disabledStyle = css`
 
 export const focusStyle = css`
   &:focus-visible {
-    outline: 2px solid ${getColor("focus")};
+    outline: 2px solid ${getColour("focus")};
     outline-offset: 0;
   }
 `;

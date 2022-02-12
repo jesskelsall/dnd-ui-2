@@ -1,8 +1,8 @@
 import "styled-components";
-import { ThemeColour } from "../types";
+import { TThemeColour } from "../types";
 
 declare module "styled-components" {
   export interface IDefaultTheme {
-    colors: Record<ThemeColour, string>;
+    colours: Record<TThemeColour, string>;
   }
 }

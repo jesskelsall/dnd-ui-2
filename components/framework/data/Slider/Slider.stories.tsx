@@ -7,12 +7,12 @@ export default {
   title: "Framework/Data/Slider",
   component: Slider,
   argTypes: {
-    color: {
+    colour: {
       control: {
         type: "select",
         options: MATERIAL_COLOURS,
       },
-      description: "CSS color for use on the slider control.",
+      description: "CSS colour for use on the slider control.",
     },
     data: {
       control: "object",

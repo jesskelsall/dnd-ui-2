@@ -1,4 +1,4 @@
-export type MaterialColour =
+export type TMaterialColour =
   | "blue"
   | "green"
   | "grey"
@@ -6,8 +6,8 @@ export type MaterialColour =
   | "red"
   | "yellow";
 
-export type ThemeColour =
-  | MaterialColour
+export type TThemeColour =
+  | TMaterialColour
   | "action"
   | "background"
   | "banner1"

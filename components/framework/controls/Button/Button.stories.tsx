@@ -12,12 +12,12 @@ export default {
       description:
         "Whether the button is displayed as a block, expanding to fill the available width.",
     },
-    color: {
+    colour: {
       control: {
         type: "select",
         options: MATERIAL_COLOURS,
       },
-      description: "CSS color for use as the background",
+      description: "CSS colour for use as the background",
     },
     disabled: {
       control: "boolean",
@@ -47,7 +47,7 @@ export const Primary = Template.bind({});
 Primary.args = {
   block: false,
   fake: false,
-  color: "grey",
+  colour: "grey",
   disabled: false,
   outline: false,
   wide: false,
@@ -57,7 +57,7 @@ export const Block = Template.bind({});
 Block.args = {
   block: true,
   fake: false,
-  color: "blue",
+  colour: "blue",
   disabled: false,
   outline: false,
   wide: false,
@@ -67,7 +67,7 @@ export const Fake = Template.bind({});
 Fake.args = {
   block: false,
   fake: true,
-  color: "green",
+  colour: "green",
   disabled: false,
   outline: false,
   wide: false,
@@ -77,7 +77,7 @@ export const Disabled = Template.bind({});
 Disabled.args = {
   block: false,
   fake: false,
-  color: "yellow",
+  colour: "yellow",
   disabled: true,
   outline: false,
   wide: false,
@@ -87,7 +87,7 @@ export const Outline = Template.bind({});
 Outline.args = {
   block: false,
   fake: false,
-  color: "orange",
+  colour: "orange",
   disabled: false,
   outline: true,
   wide: false,
@@ -97,7 +97,7 @@ export const Wide = Template.bind({});
 Wide.args = {
   block: false,
   fake: false,
-  color: "red",
+  colour: "red",
   disabled: false,
   outline: false,
   wide: true,

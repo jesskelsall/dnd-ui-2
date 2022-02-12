@@ -2,7 +2,7 @@ import _ from "lodash/fp";
 import { NextPage } from "next";
 import { CRUD } from "../../../../components";
 import { createMapView } from "../../../../consts";
-import { updateDataStore } from "../../../../functions";
+import { getRecordName, updateDataStore } from "../../../../functions";
 import { useDataStore, useSocket } from "../../../../providers";
 import { IMapView, TMapViewId } from "../../../../types";
 
@@ -33,10 +33,10 @@ const MapViewsPage: NextPage = () => {
         },
         {
           display: (mapView) =>
-            _.get(
-              `copies.control.screens.map.maps.${mapView.map}.name`,
-              dataStore
-            ) || "",
+            getRecordName(
+              dataStore.copies.control.screens.map.maps,
+              mapView.map
+            ),
           title: "Map",
         },
       ]}

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import { APP_NAME } from "../../../../consts";
-import { getColor, updateDataStore } from "../../../../functions";
+import { getColour, updateDataStore } from "../../../../functions";
 import { useDataStore, useSocket } from "../../../../providers";
 import { Breadcrumbs } from "../Breadcrumb";
 import { SyncButton } from "../SyncButton";
@@ -10,7 +10,7 @@ import { SyncButton } from "../SyncButton";
 export const StyledHeader = styled.header`
   display: flex;
   justify-content: space-between;
-  background-color: ${getColor("banner1")};
+  background-color: ${getColour("banner1")};
   padding: 0.5rem 1rem;
 `;
 
@@ -21,7 +21,7 @@ export const HeaderSide = styled.div`
 `;
 
 export const HeaderTitle = styled.a`
-  color: ${getColor("heading")};
+  color: ${getColour("heading")};
   font-size: 1.25rem;
 
   &:hover {

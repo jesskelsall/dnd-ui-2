@@ -1,8 +1,8 @@
 import _ from "lodash/fp";
 import { ChangeEvent, Dispatch, SetStateAction } from "react";
 import styled from "styled-components";
-import { getColor, setFormData, tabIndex } from "../../../../functions";
-import { FormNumber, MaterialColour, OnChange } from "../../../../types";
+import { getColour, setFormData, tabIndex } from "../../../../functions";
+import { FormNumber, OnChange, TMaterialColour } from "../../../../types";
 import { disabledStyle, focusStyle } from "../../common";
 import { StyledInput } from "../InputText/InputText";
 
@@ -21,14 +21,14 @@ export const Input = styled(StyledInput)`
 `;
 
 export interface IRangeProps {
-  colour: MaterialColour;
+  colour: TMaterialColour;
   disabled?: boolean;
 }
 
 export const Range = styled.input<IRangeProps>`
   width: 100%;
   height: 1px;
-  background-color: ${getColor("border")};
+  background-color: ${getColour("border")};
   appearance: none;
 
   ${focusStyle}
@@ -40,14 +40,14 @@ export const Range = styled.input<IRangeProps>`
     height: 1rem;
     border: none;
     border-radius: 50%;
-    background-color: ${(props) => getColor(props.colour)};
+    background-color: ${(props) => getColour(props.colour)};
     appearance: none;
     cursor: pointer;
   }
 `;
 
 export interface ISliderProps<DataType extends object> {
-  colour?: MaterialColour;
+  colour?: TMaterialColour;
   data: DataType;
   disabled?: boolean;
   max: number;

@@ -1,18 +1,18 @@
 import styled from "styled-components";
-import { getColor } from "../../../../functions";
+import { getColour } from "../../../../functions";
 
 export const FormHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: ${getColor("banner2")};
+  background-color: ${getColour("banner2")};
   padding: 0.5rem 1rem;
 `;
 
 export const FormTitle = styled.h1`
   margin: 0;
   font-size: 2rem;
-  color: ${getColor("heading")};
+  color: ${getColour("heading")};
 `;
 
 export const FormButtons = styled.div`

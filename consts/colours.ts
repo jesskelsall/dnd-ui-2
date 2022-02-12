@@ -1,4 +1,4 @@
-export const CLASS_COLORS = {
+export const CLASS_COLOURS = {
   ARTIFICER: "#836c3c",
   BARBARIAN: "#c5654b",
   BARD: "#a579a6",

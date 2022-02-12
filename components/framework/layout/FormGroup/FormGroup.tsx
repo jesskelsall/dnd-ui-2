@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { getColor } from "../../../../functions";
+import { getColour } from "../../../../functions";
 
 export interface IStyledFormGroupProps {
   flex?: boolean;
@@ -24,10 +24,10 @@ export const FormGroupTitle = styled.h2`
   top: 0;
   margin: 0;
   padding: 0.5rem 1rem;
-  background-color: ${getColor("banner3")};
+  background-color: ${getColour("banner3")};
   font-size: 1.5rem;
   font-weight: normal;
-  color: ${getColor("heading")};
+  color: ${getColour("heading")};
 `;
 
 export interface IFormGroupProps {
