@@ -1,7 +1,7 @@
+import { IDataRecord } from "../../DataRecord";
+
 export type TMapId = string;
 
-export interface IMap {
+export interface IMap extends IDataRecord {
   fileName: string;
-  id: TMapId;
-  name: string;
 }

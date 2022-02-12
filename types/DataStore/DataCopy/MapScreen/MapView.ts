@@ -1,3 +1,4 @@
+import { IDataRecord } from "../../DataRecord";
 import { TMapId } from "./Map";
 
 export type TMapViewId = string;
@@ -9,7 +10,4 @@ export interface IMapViewDisplay {
   positionVertical: number;
 }
 
-export interface IMapView extends IMapViewDisplay {
-  id: TMapViewId;
-  name: string;
-}
+export type IMapView = IDataRecord & IMapViewDisplay;

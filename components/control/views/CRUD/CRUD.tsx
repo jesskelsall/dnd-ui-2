@@ -3,6 +3,7 @@ import _ from "lodash/fp";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import { randomId } from "../../../../functions";
+import { IDataRecord } from "../../../../types";
 import {
   Button,
   ButtonGroup,
@@ -21,16 +22,12 @@ const ButtonCell = styled(TableHeaderCell)`
   width: 0;
 `;
 
-export interface RecordWithId {
-  id: string;
-}
-
 export interface IColumn<RecordType> {
   display: (data: RecordType) => string;
   title: string;
 }
 
-export interface ICRUDProps<RecordType> {
+export interface ICRUDProps<RecordType extends IDataRecord> {
   actionDelete: (id: string) => void;
   actionSet: (record: RecordType) => void;
   columns: IColumn<RecordType>[];
@@ -41,7 +38,7 @@ export interface ICRUDProps<RecordType> {
   title: string;
 }
 
-export function CRUD<RecordType extends RecordWithId>({
+export function CRUD<RecordType extends IDataRecord>({
   actionDelete,
   actionSet,
   columns,

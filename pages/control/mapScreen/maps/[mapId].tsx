@@ -47,7 +47,6 @@ const MapPage: IPage = () => {
       actionSet={setMapAction}
       data={map}
       dataOriginal={originalMap}
-      name={map.name}
       type="Map"
     >
       <FormGroup>
