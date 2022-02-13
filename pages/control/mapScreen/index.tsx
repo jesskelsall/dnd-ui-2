@@ -32,7 +32,11 @@ const MapScreenPage: NextPage = () => {
   const getMapName = (mapView: IMapView) => mapNames[mapView.map] || "";
 
   const maps: IMapView[][] = _.flow(
-    _.sortBy([getMapName, "name"]),
+    _.sortBy([
+      getMapName,
+      (mapView: IMapView) => ORDERED_COLOURS.indexOf(mapView.colour),
+      "name",
+    ]),
     _.groupBy("map"),
     _.values
   )(mapScreen.mapViews);
