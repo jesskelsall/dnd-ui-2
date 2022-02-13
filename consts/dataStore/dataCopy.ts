@@ -1,5 +1,6 @@
 import { IDataCopy } from "../../types";
 import { MAP_VIEW_DISPLAY_TEMPLATE } from "./mapScreen";
+import { TIMER_SCREEN_TEMPLATE } from "./timerScreen";
 
 export const DATA_COPY_TEMPLATE: IDataCopy = {
   screens: {
@@ -8,5 +9,6 @@ export const DATA_COPY_TEMPLATE: IDataCopy = {
       maps: {},
       mapViews: {},
     },
+    timer: TIMER_SCREEN_TEMPLATE,
   },
 };

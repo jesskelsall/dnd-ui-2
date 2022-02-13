@@ -1,4 +1,5 @@
 import { saveAs } from "file-saver";
+import _ from "lodash/fp";
 import { DateTime } from "luxon";
 import type { NextPage } from "next";
 import React, { useState } from "react";
@@ -8,6 +9,8 @@ import { APP_NAME } from "../../consts";
 import { jsonToString, updateDataStore } from "../../functions";
 import { useDataStore, useSocket } from "../../providers";
 import { IDataStore, TMaterialColour } from "../../types";
+
+const SCREENS = ["map"];
 
 const IMPORT_COLOUR_DEFAULT: TMaterialColour = "grey";
 const IMPORT_STATUS_DELAY = 2000;
@@ -68,7 +71,7 @@ const ControlPage: NextPage = () => {
     const json = JSON.stringify(dataStore, null, 2);
     const blob = new Blob([json], { type: "text/plain;charset=utf-8" });
 
-    const date = DateTime.now().toFormat("yyyy-LL-dd HH-mm-ss");
+    const date = DateTime.now().toFormat("yyyy-LL-dd");
     const name = `${APP_NAME} ${date}.json`;
 
     saveAs(blob, name);
@@ -78,9 +81,11 @@ const ControlPage: NextPage = () => {
     <>
       <FormGroup title="Screens">
         <FormRow>
-          <NavButton href="control/mapScreen" large>
-            Map
-          </NavButton>
+          {SCREENS.map((screen) => (
+            <NavButton href={`control/${screen}Screen`} key={screen} large>
+              {_.startCase(screen)}
+            </NavButton>
+          ))}
         </FormRow>
       </FormGroup>
 
