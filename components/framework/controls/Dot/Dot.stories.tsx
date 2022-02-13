@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { themeDecorator } from "../../../../.storybook/decorators";
+import { controlDecorator } from "../../../../.storybook/decorators";
 import ButtonConfig from "../Button/Button.stories";
 import { Dot } from "./Dot";
 
@@ -7,7 +7,7 @@ export default {
   title: "Framework/Controls/Dot",
   component: Dot,
   argTypes: ButtonConfig.argTypes,
-  decorators: [themeDecorator()],
+  decorators: [controlDecorator()],
 } as ComponentMeta<typeof Dot>;
 
 const Template: ComponentStory<typeof Dot> = (args) => <Dot {...args} />;

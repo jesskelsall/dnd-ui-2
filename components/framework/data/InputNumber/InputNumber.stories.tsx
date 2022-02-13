@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { themeDecorator } from "../../../../.storybook/decorators";
+import { controlDecorator } from "../../../../.storybook/decorators";
 import { InputNumber } from "./InputNumber";
 
 export default {
@@ -38,7 +38,7 @@ export default {
         "Whether this input should be skipped over when tabbing between controls.",
     },
   },
-  decorators: [themeDecorator()],
+  decorators: [controlDecorator()],
 } as ComponentMeta<typeof InputNumber>;
 
 const Template: ComponentStory<typeof InputNumber> = (args) => (

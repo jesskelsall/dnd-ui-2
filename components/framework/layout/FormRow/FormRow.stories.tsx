@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import _ from "lodash/fp";
-import { themeDecorator } from "../../../../.storybook/decorators";
+import { controlDecorator } from "../../../../.storybook/decorators";
 import { Button } from "../../controls";
 import { InputNumber, InputText } from "../../data";
 import { FormLabel } from "../FormLabel";
@@ -18,7 +18,7 @@ export default {
   title: "Framework/Layout/FormRow",
   component: StyledWrapper,
   argTypes: {},
-  decorators: [themeDecorator()],
+  decorators: [controlDecorator()],
 } as ComponentMeta<typeof StyledWrapper>;
 
 const Template: ComponentStory<typeof StyledWrapper> = (args) => (

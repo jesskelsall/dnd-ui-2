@@ -9,6 +9,9 @@ import { DataStore } from "./DataStore";
  */
 const handleAction = (dataStore: DataStore, event: TAction): void => {
   switch (event.action) {
+    case "datastore-import":
+      dataStore.dataStoreImport(event.payload);
+      break;
     case "map-delete":
       dataStore.mapDelete(event.payload);
       break;

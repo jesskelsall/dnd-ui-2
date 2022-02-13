@@ -37,6 +37,10 @@ export class DataStore {
 
   // Actions
 
+  public dataStoreImport = (dataStore: IDataStore) => {
+    this.data = dataStore;
+  };
+
   public mapDelete = (mapId: TMapId) => {
     this.updateCopies(_.unset(`screens.map.maps.${mapId}`));
   };

@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { themeDecorator } from "../../../../.storybook/decorators";
+import { controlDecorator } from "../../../../.storybook/decorators";
 import { SyncButton } from "./SyncButton";
 
 export default {
@@ -23,7 +23,7 @@ export default {
         "Function for setting whether the data model is being applied in real-time.",
     },
   },
-  decorators: [themeDecorator()],
+  decorators: [controlDecorator()],
 } as ComponentMeta<typeof SyncButton>;
 
 const Template: ComponentStory<typeof SyncButton> = (args) => (

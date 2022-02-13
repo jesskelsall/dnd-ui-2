@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { themeDecorator } from "../../../../.storybook/decorators";
+import { controlDecorator } from "../../../../.storybook/decorators";
 import { MATERIAL_COLOURS } from "../../../../consts";
 import { Button } from "./Button";
 
@@ -27,6 +27,10 @@ export default {
       control: "boolean",
       description: "True if the button does nothing when clicked.",
     },
+    large: {
+      control: "boolean",
+      description: "Whether to display a larger button with larger text.",
+    },
     outline: {
       control: "boolean",
       description: "Whether to style the button with only an outline.",
@@ -36,7 +40,7 @@ export default {
       description: "Whether to provide a minimum width.",
     },
   },
-  decorators: [themeDecorator()],
+  decorators: [controlDecorator()],
 } as ComponentMeta<typeof Button>;
 
 const Template: ComponentStory<typeof Button> = (args) => (
@@ -46,9 +50,10 @@ const Template: ComponentStory<typeof Button> = (args) => (
 export const Primary = Template.bind({});
 Primary.args = {
   block: false,
-  fake: false,
   colour: "grey",
   disabled: false,
+  fake: false,
+  large: false,
   outline: false,
   wide: false,
 };
@@ -56,9 +61,10 @@ Primary.args = {
 export const Block = Template.bind({});
 Block.args = {
   block: true,
-  fake: false,
   colour: "blue",
   disabled: false,
+  fake: false,
+  large: false,
   outline: false,
   wide: false,
 };
@@ -66,9 +72,10 @@ Block.args = {
 export const Fake = Template.bind({});
 Fake.args = {
   block: false,
-  fake: true,
   colour: "green",
   disabled: false,
+  fake: true,
+  large: false,
   outline: false,
   wide: false,
 };
@@ -76,9 +83,10 @@ Fake.args = {
 export const Disabled = Template.bind({});
 Disabled.args = {
   block: false,
-  fake: false,
   colour: "yellow",
   disabled: true,
+  fake: false,
+  large: false,
   outline: false,
   wide: false,
 };
@@ -86,9 +94,10 @@ Disabled.args = {
 export const Outline = Template.bind({});
 Outline.args = {
   block: false,
-  fake: false,
   colour: "orange",
   disabled: false,
+  fake: false,
+  large: false,
   outline: true,
   wide: false,
 };
@@ -96,9 +105,21 @@ Outline.args = {
 export const Wide = Template.bind({});
 Wide.args = {
   block: false,
-  fake: false,
   colour: "red",
   disabled: false,
+  fake: false,
+  large: false,
   outline: false,
   wide: true,
+};
+
+export const Large = Template.bind({});
+Large.args = {
+  block: false,
+  colour: "blue",
+  disabled: false,
+  fake: false,
+  large: true,
+  outline: false,
+  wide: false,
 };

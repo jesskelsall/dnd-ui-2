@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import _ from "lodash/fp";
-import { themeDecorator } from "../../../../.storybook/decorators";
+import { controlDecorator } from "../../../../.storybook/decorators";
 import { Button } from "../../controls";
 import { InputNumber, InputText, Slider } from "../../data";
 import { FormLabel } from "../FormLabel";
@@ -16,7 +16,7 @@ export default {
       description: "The title to display at the top of the form group.",
     },
   },
-  decorators: [themeDecorator()],
+  decorators: [controlDecorator()],
 } as ComponentMeta<typeof FormGroup>;
 
 const Template: ComponentStory<typeof FormGroup> = (args) => (

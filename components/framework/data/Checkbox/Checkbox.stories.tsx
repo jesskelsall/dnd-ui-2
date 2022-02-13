@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { themeDecorator } from "../../../../.storybook/decorators";
+import { controlDecorator } from "../../../../.storybook/decorators";
 import { MATERIAL_COLOURS } from "../../../../consts";
 import { Checkbox } from "./Checkbox";
 
@@ -42,7 +42,7 @@ export default {
         "Whether this input should be skipped over when tabbing between controls.",
     },
   },
-  decorators: [themeDecorator()],
+  decorators: [controlDecorator()],
 } as ComponentMeta<typeof Checkbox>;
 
 const Template: ComponentStory<typeof Checkbox> = (args) => (

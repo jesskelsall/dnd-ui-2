@@ -1,17 +1,22 @@
 import _ from "lodash/fp";
 import Link from "next/link";
 import { Button } from "../../../framework";
+import { IButtonProps } from "../../../framework/controls/Button/Button";
 
-export interface INavButtonProps {
+export interface INavButtonProps extends IButtonProps {
   href: string;
 }
 
-export const NavButton = ({ href }: INavButtonProps) => {
+export const NavButton = ({
+  children,
+  href,
+  ...buttonProps
+}: INavButtonProps) => {
   const lastPath = _.last(href.split("/")) || "";
 
   return (
     <Link href={href} passHref>
-      <Button>{_.startCase(lastPath)}</Button>
+      <Button {...buttonProps}>{children || _.startCase(lastPath)}</Button>
     </Link>
   );
 };

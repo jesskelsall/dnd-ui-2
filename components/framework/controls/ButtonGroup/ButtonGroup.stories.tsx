@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { themeDecorator } from "../../../../.storybook/decorators";
+import { controlDecorator } from "../../../../.storybook/decorators";
 import { Button } from "../Button";
 import { ButtonGroup } from "./ButtonGroup";
 
@@ -7,7 +7,7 @@ export default {
   title: "Framework/Controls/ButtonGroup",
   component: ButtonGroup,
   argTypes: {},
-  decorators: [themeDecorator()],
+  decorators: [controlDecorator()],
 } as ComponentMeta<typeof ButtonGroup>;
 
 const Template: ComponentStory<typeof ButtonGroup> = (args) => (

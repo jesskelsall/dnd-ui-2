@@ -1,3 +1,4 @@
+import { IActionDataStoreImport } from "./import";
 import {
   IActionMapDelete,
   IActionMapScreenApply,
@@ -8,6 +9,7 @@ import {
 import { IActionSyncApplyChanges, IActionSyncSetRealTime } from "./sync";
 
 export type TAction =
+  | IActionDataStoreImport
   | IActionMapDelete
   | IActionMapScreenApply
   | IActionMapSet
@@ -16,5 +18,6 @@ export type TAction =
   | IActionSyncApplyChanges
   | IActionSyncSetRealTime;
 
+export * from "./import";
 export * from "./mapScreen";
 export * from "./sync";

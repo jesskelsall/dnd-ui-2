@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import { themeDecorator } from "../../../../.storybook/decorators";
+import { controlDecorator } from "../../../../.storybook/decorators";
 import { FormLabel } from "./FormLabel";
 
 interface IStyledWrapperProps {
@@ -14,7 +14,7 @@ export default {
   title: "Framework/Layout/FormLabel",
   component: StyledWrapper,
   argTypes: {},
-  decorators: [themeDecorator()],
+  decorators: [controlDecorator()],
 } as ComponentMeta<typeof StyledWrapper>;
 
 const Template: ComponentStory<typeof StyledWrapper> = (args) => (

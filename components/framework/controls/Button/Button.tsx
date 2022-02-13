@@ -5,9 +5,11 @@ import { disabledStyle, focusStyle } from "../../common";
 
 export interface IButtonProps {
   block?: boolean;
+  children?: React.ReactNode;
   colour?: TMaterialColour;
   disabled?: boolean;
   fake?: boolean;
+  large?: boolean;
   outline?: boolean;
   wide?: boolean;
 }
@@ -18,7 +20,7 @@ export const Button = styled.a<IButtonProps>((props) => {
   return css`
     display: inline-block;
     flex-shrink: 0;
-    padding: 0.5rem 1rem;
+    padding: 0.5em 1em;
     border: 1px solid ${colour};
     border-radius: 100px;
     background-color: ${colour};
@@ -38,7 +40,12 @@ export const Button = styled.a<IButtonProps>((props) => {
 
     ${props.wide &&
     css`
-      min-width: 10rem;
+      min-width: 10em;
+    `}
+
+    ${props.large &&
+    css`
+      font-size: 2rem;
     `}
 
     ${props.outline &&
