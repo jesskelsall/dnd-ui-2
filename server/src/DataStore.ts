@@ -1,11 +1,18 @@
 import _ from "lodash/fp";
+import { DateTime } from "luxon";
 import { DATA_STORE_TEMPLATE } from "../../consts";
+import { timeRemaining } from "../../functions/time";
 import {
   IDataCopy,
   IDataStore,
   IMap,
   IMapView,
   IMapViewDisplay,
+  ITimerDisplayPaused,
+  ITimerDisplayRunning,
+  ITimerDisplayStopped,
+  timerIsPaused,
+  timerIsRunning,
   TMapId,
   TMapViewId,
 } from "../../types";
@@ -34,6 +41,12 @@ export class DataStore {
   };
 
   public getData = (): IDataStore => this.data;
+
+  // Action Helpers
+
+  private updateTimer = <TimerType>(timerDisplay: TimerType) => {
+    this.updateCopies(_.set(`screens.timer.display`, timerDisplay));
+  };
 
   // Actions
 
@@ -73,5 +86,59 @@ export class DataStore {
       _.set("sync.realTime", realTime),
       realTime ? _.set("copies.display", this.data.copies.control) : _.identity
     )(this.data);
+  };
+
+  public timerClear = () => {
+    this.updateTimer<ITimerDisplayStopped>({
+      endTime: null,
+      seconds: null,
+      secondsRemaining: null,
+    });
+  };
+
+  public timerPause = () => {
+    const { display: timer } = this.data.copies.control.screens.timer;
+
+    if (timerIsRunning(timer)) {
+      const secondsRemaining = timeRemaining(timer.endTime);
+
+      if (secondsRemaining) {
+        this.updateTimer<ITimerDisplayPaused>({
+          endTime: null,
+          seconds: timer.seconds,
+          secondsRemaining,
+        });
+      }
+    }
+  };
+
+  public timerPrepare = (seconds: number) => {
+    this.updateTimer<ITimerDisplayStopped>({
+      endTime: null,
+      seconds: null,
+      secondsRemaining: seconds,
+    });
+  };
+
+  public timerResume = () => {
+    const { display: timer } = this.data.copies.control.screens.timer;
+
+    if (timerIsPaused(timer)) {
+      this.updateTimer<ITimerDisplayRunning>({
+        endTime: DateTime.now()
+          .plus({ seconds: timer.secondsRemaining })
+          .toISO(),
+        seconds: timer.seconds,
+        secondsRemaining: null,
+      });
+    }
+  };
+
+  public timerStart = (seconds: number) => {
+    this.updateTimer<ITimerDisplayRunning>({
+      endTime: DateTime.now().plus({ seconds }).toISO(),
+      seconds,
+      secondsRemaining: null,
+    });
   };
 }

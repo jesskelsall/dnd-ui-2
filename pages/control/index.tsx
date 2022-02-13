@@ -10,7 +10,7 @@ import { jsonToString, updateDataStore } from "../../functions";
 import { useDataStore, useSocket } from "../../providers";
 import { IDataStore, TMaterialColour } from "../../types";
 
-const SCREENS = ["map"];
+const SCREENS = ["map", "timer"];
 
 const IMPORT_COLOUR_DEFAULT: TMaterialColour = "grey";
 const IMPORT_STATUS_DELAY = 2000;

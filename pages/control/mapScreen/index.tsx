@@ -1,15 +1,14 @@
 import _ from "lodash/fp";
 import { NextPage } from "next";
-import styled from "styled-components";
-import { Form, FormGroup, MapViewButton, NavButton } from "../../../components";
+import {
+  Form,
+  FormGroup,
+  FormRowButtons,
+  MapViewButton,
+  NavButton,
+} from "../../../components";
 import { useDataStore, useSocket } from "../../../providers";
 import { IMapView, TMaterialColour } from "../../../types";
-
-const MapViewButtons = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-`;
 
 export const ORDERED_COLOURS: TMaterialColour[] = [
   "grey",
@@ -53,7 +52,7 @@ const MapScreenPage: NextPage = () => {
     >
       {maps.map((mapViews) => (
         <FormGroup key={mapViews[0].map} title={getMapName(mapViews[0])}>
-          <MapViewButtons>
+          <FormRowButtons>
             {mapViews.map((mapView) => (
               <MapViewButton
                 dataStore={dataStore}
@@ -62,7 +61,7 @@ const MapScreenPage: NextPage = () => {
                 socket={socket}
               />
             ))}
-          </MapViewButtons>
+          </FormRowButtons>
         </FormGroup>
       ))}
     </Form>

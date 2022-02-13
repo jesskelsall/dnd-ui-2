@@ -2,7 +2,7 @@ import _ from "lodash/fp";
 import { Dispatch, SetStateAction } from "react";
 import styled from "styled-components";
 import { getColour, setFormData, tabIndex } from "../../../../functions";
-import { OnChange } from "../../../../types";
+import { OnBlur, OnChange } from "../../../../types";
 import { disabledStyle, focusStyle } from "../../common";
 
 export interface IStyledInputProps {
@@ -31,6 +31,7 @@ export const StyledInput = styled.input<IStyledInputProps>`
 export interface IInputProps<InputType, DataType extends object> {
   data: DataType;
   disabled?: boolean;
+  onBlur?: OnBlur;
   onChange?: OnChange<InputType>;
   path: string;
   placeholder?: string;
@@ -41,6 +42,7 @@ export interface IInputProps<InputType, DataType extends object> {
 export function InputText<DataType extends object>({
   data,
   disabled = false,
+  onBlur,
   onChange,
   path,
   placeholder,
@@ -52,6 +54,7 @@ export function InputText<DataType extends object>({
   return (
     <StyledInput
       disabled={disabled}
+      onBlur={onBlur}
       onChange={(event) =>
         setFormData<string, DataType>(
           event.target.value,

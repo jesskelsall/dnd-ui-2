@@ -1,6 +1,5 @@
 export interface IActionSyncApplyChanges {
   action: "sync-applychanges";
-  payload: undefined;
 }
 
 export interface IActionSyncSetRealTime {

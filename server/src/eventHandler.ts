@@ -33,6 +33,21 @@ const handleAction = (dataStore: DataStore, event: TAction): void => {
     case "sync-set-realtime":
       dataStore.syncSetRealTime(event.payload);
       break;
+    case "timer-clear":
+      dataStore.timerClear();
+      break;
+    case "timer-pause":
+      dataStore.timerPause();
+      break;
+    case "timer-prepare":
+      dataStore.timerPrepare(event.payload);
+      break;
+    case "timer-resume":
+      dataStore.timerResume();
+      break;
+    case "timer-start":
+      dataStore.timerStart(event.payload);
+      break;
     default:
       // @ts-expect-error Disallowed action strings need handling
       throw new Error(`Unknown action requested: ${event.action}`);

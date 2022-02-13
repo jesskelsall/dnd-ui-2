@@ -5,3 +5,5 @@ export * from "./random";
 export * from "./records";
 export * from "./socket";
 export * from "./styled";
+export * from "./text";
+export * from "./time";

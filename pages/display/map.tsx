@@ -1,5 +1,5 @@
 import { NextPage } from "next";
-import { InteractiveMap } from "../../components/display/InteractiveMap/InteractiveMap";
+import { InteractiveMap } from "../../components/display";
 import { useDataStore } from "../../providers";
 
 const MapScreen: NextPage = () => {

@@ -37,7 +37,6 @@ export const Header = () => {
   const applyChanges = () => {
     updateDataStore(socket, {
       action: "sync-applychanges",
-      payload: undefined,
     });
   };
 
