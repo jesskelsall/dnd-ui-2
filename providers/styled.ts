@@ -10,6 +10,11 @@ export const GlobalStyles = createGlobalStyle`
     color: inherit;
     text-decoration: none;
   }
+
+  @font-face {
+    font-family: "Metamorphous";
+    src: url("../public/metamorphous.woff2") format("woff2");
+  }
 `;
 
 export const dark: IDefaultTheme = {

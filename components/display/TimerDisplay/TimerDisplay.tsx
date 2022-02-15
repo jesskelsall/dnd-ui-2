@@ -20,7 +20,7 @@ export const TimerDisplay = ({
   useEffect(() => {
     const timeout = setInterval(() => {
       setText(displayTimer(timer));
-    }, 200);
+    }, 1000);
 
     return () => clearTimeout(timeout);
   });
